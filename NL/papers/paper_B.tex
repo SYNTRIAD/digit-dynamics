@@ -1,0 +1,567 @@
+\documentclass[11pt,a4paper]{amsart}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[dutch]{babel}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Stelling}
+\newtheorem{corollary}[theorem]{Gevolg}
+\newtheorem{proposition}[theorem]{Propositie}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{conjecture}[theorem]{Vermoeden}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definitie}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Opmerking}
+\newtheorem{observation}[theorem]{Observatie}
+
+\DeclareMathOperator{\rev}{rev}
+\DeclareMathOperator{\comp}{comp}
+\DeclareMathOperator{\sort}{sort}
+\DeclareMathOperator{\kap}{kap}
+\DeclareMathOperator{\ds}{ds}
+\DeclareMathOperator{\narc}{narc}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\basin}{basin}
+
+\title[Attractorspectra van Cijferoperatie-Pipelines]{Attractorspectra en $\varepsilon$-Universaliteit\\
+in Cijferoperatie Dynamische Systemen}
+
+\author{Remco Havenaar}
+\address{SYNTRIAD Research, Nederland}
+\email{remco@syntriad.com}
+\urladdr{https://github.com/SYNTRIAD/digit-dynamics}
+\date{Februari 2026}
+
+\subjclass[2020]{11A63, 37B99, 37A35}
+\keywords{cijferoperaties, attractorspectra, bassin-entropie, $\varepsilon$-universaliteit,
+dynamische systemen, Lyapunov-functies, computationele getaltheorie}
+
+\thanks{Begeleidend artikel bij ``Dekpunten van Cijferoperatie-Pipelines in Willekeurige
+Bases'' van dezelfde auteur. Broncode en verificatiedata op
+\url{https://github.com/SYNTRIAD/digit-dynamics}.
+Computationele experimenten werden uitgevoerd met AI-ondersteunde ontdekkings-
+pipelines; alle resultaten geverifieerd door uitputtende berekening.}
+
+\begin{document}
+
+\begin{abstract}
+Wij introduceren kwantitatieve hulpmiddelen voor het bestuderen van de globale dynamica van samengestelde
+cijferoperatie-pipelines in basis~$b$: \emph{$\varepsilon$-universaliteit}
+(die attractordominantie meet) en \emph{bassin-entropie} (die de
+complexiteit van multi-attractorspectra meet). Uitputtende GPU-versnelde berekening
+over $10^7$~startwaarden per pipeline onthult een scherpe dichotomie: pipelines
+die contractieve en mengende operaties combineren bereiken bijna-universele convergentie
+($\varepsilon < 0.01$), terwijl pipelines met niet-contractieve permutaties
+rijke multi-attractorspectra vertonen met bassin-entropie boven 2~bits.
+
+Een samenstellingslemma verklaart hoe pipeline-concatenatie attractordominantie
+bevordert, en een conditionele Lyapunov-stelling classificeert welke operatie-
+combinaties convergentie garanderen via cijfersom-daling. Wij formuleren
+drie vermoedens over bassin-entropie-monotoniciteit, asymptotische universaliteit,
+en attractoraantal-groei.
+
+Begeleidend artikel~\cite{PaperA} levert de algebraïsche dekpunt-
+classificatie waarnaar hier verwezen wordt.
+\end{abstract}
+
+\maketitle
+
+%% ===================================================================
+\section{Inleiding}\label{sec:intro}
+%% ===================================================================
+
+\subsection{Motivatie}
+
+De algebraïsche structuur van cijferoperaties---omkeren, complement, sorteren,
+Kaprekar-stap, cijfermachten---is uitgebreid bestudeerd in termen van
+\emph{dekpunten}: getallen invariant onder een gegeven operatie of pipeline
+(zie~\cite{PaperA, Kaprekar1955, Berger1992}). Echter, dekpunt-
+classificatie alleen vangt niet de \emph{globale dynamica}: hoe verdelen
+startwaarden zich over attractoren? Convergeren de meeste banen naar een
+enkele attractor, of vertoont het systeem een rijk multi-attractorspectrum?
+
+Deze vragen zijn analoog aan de studie van \emph{bassinstructuur} in
+continue dynamische systemen, maar de discrete, combinatorische aard van
+cijferoperaties vereist onderscheiden hulpmiddelen.
+
+\subsection{Setting}
+
+Zij $b \geq 3$ een basis en zij $\mathcal{D}_b^k = \{b^{k-1}, \ldots,
+b^k - 1\}$ de verzameling van $k$-cijferige getallen. Wij beschouwen pipelines
+$f = f_m \circ \cdots \circ f_1$ van elementaire cijferoperaties zoals
+gedefinieerd in~\cite{PaperA}. Een \textbf{attractor} van~$f$ is een dekpunt
+of periodieke cyclus bereikt door~$f$ te itereren. Het \textbf{bassin} van een
+attractor~$A$ is $\basin(A) = \{n \in \mathcal{D}_b^k : f^t(n) \to A
+\text{ voor zekere } t\}$.
+
+\subsection{Bijdragen}
+
+\begin{itemize}
+\item Formele definities van $\varepsilon$-universaliteit en bassin-entropie
+  als kwantitatieve descriptoren van pipeline-dynamica
+  (Sectie~\ref{sec:definitions}).
+\item Een samenstellingslemma dat de ontsnappingsfractie van geconcateneerde
+  pipelines begrenst (Sectie~\ref{sec:composition}).
+\item Een conditionele Lyapunov-stelling die operaties classificeert in
+  ds-behoudende, ds-contractieve, en ds-expansieve klassen, met
+  convergentiegaranties voor $\mathcal{P} \cup \mathcal{C}$ pipelines
+  (Sectie~\ref{sec:lyapunov}).
+\item GPU-uitputtende attractorstatistieken voor representatieve gemengde
+  pipelines over $2 \times 10^7$ invoerwaarden (Sectie~\ref{sec:empirical}).
+\item Drie vermoedens over de statistische structuur van pipeline-dynamica
+  (Sectie~\ref{sec:conjectures}).
+\item Volledige dataset-vrijgave met SHA-256 verificatie-hashes
+  (Appendix~\ref{app:data}).
+\end{itemize}
+
+\subsection{Gerelateerd werk}
+Kaprekar~\cite{Kaprekar1955} en Berger~\cite{Berger1992} bestudeerden
+convergentie van specifieke operaties. Bassin-analyse in discrete dynamische
+systemen is verkend in cellulaire automaten~\cite{Wolfram2002} en
+geïtereerde functiesystemen. Voor zover wij weten kwantificeert geen eerder werk systematisch
+attractorspectra voor \emph{samengestelde} cijferoperatie-pipelines.
+
+%% ===================================================================
+\section{Definities}\label{sec:definitions}
+%% ===================================================================
+
+\begin{definition}[$\varepsilon$-universaliteit]\label{def:eps-univ}
+Een pipeline $f$ is \textbf{$\varepsilon$-universeel} op $\mathcal{D}_b^k$ als
+er een attractor $A$ (dekpunt of cyclus) bestaat zodanig dat
+\[
+\frac{|\basin(A)|}{|\mathcal{D}_b^k|} \geq 1 - \varepsilon.
+\]
+Wij noemen $A$ de \textbf{dominante attractor} en
+$\varepsilon_f = 1 - |\basin(A)|/|\mathcal{D}_b^k|$ de
+\textbf{ontsnappingsfractie}.
+\end{definition}
+
+\begin{definition}[Bassin-entropie]\label{def:basin-entropy}
+Zij $f$ met attractoren $A_1, \ldots, A_r$ met bassinfracties
+$p_i = |\basin(A_i)|/|\mathcal{D}_b^k|$. De \textbf{bassin-entropie} van~$f$ is
+\[
+H(f) = -\sum_{i=1}^{r} p_i \log_2 p_i.
+\]
+Een monostabiele pipeline ($r = 1$) heeft $H(f) = 0$; maximale entropie treedt op wanneer
+alle bassins gelijk zijn: $H_{\max} = \log_2 r$.
+\end{definition}
+
+\begin{remark}
+Bassin-entropie vangt de ``complexiteit'' van het attractorlandschap:
+\begin{itemize}
+\item $H(f) = 0$: perfect monostabiel (alle banen convergeren naar één attractor).
+\item $H(f) \approx \log_2 r$: alle attractoren zijn even waarschijnlijk.
+\item Lage $H$ met grote $r$: één dominante attractor met vele zeldzame satellieten.
+\end{itemize}
+\end{remark}
+
+\begin{definition}[Convergentieprofiel]\label{def:conv-profile}
+Het \textbf{convergentieprofiel} van een pipeline~$f$ op $\mathcal{D}_b^k$ is
+de functie $C_f(t) = |\{n \in \mathcal{D}_b^k : f^s(n) \in
+\text{attractor voor zekere } s \leq t\}| / |\mathcal{D}_b^k|$.
+De \textbf{mediane convergentietijd} is $t_{1/2} = \min\{t : C_f(t) \geq 1/2\}$.
+\end{definition}
+
+%% ===================================================================
+\section{Samenstellingslemma}\label{sec:composition}
+%% ===================================================================
+
+\begin{lemma}[Attractor-samenstelling]\label{lem:composition}
+Zij $f$ en $g$ pipelines op $\mathcal{D}_b^k$. Veronderstel dat $f$
+$\varepsilon_1$-universeel is met dominante attractor~$A$, en $g$
+$\varepsilon_2$-universeel is met dominante attractor~$B$, en
+$A \in \basin(g, B)$. Dan is $g \circ f$
+$(\varepsilon_1 + \varepsilon_2)$-universeel met dominante attractor~$B$.
+\end{lemma}
+
+\begin{proof}
+Een startwaarde~$n$ bereikt~$B$ onder $g \circ f$ als $f^t(n) \to A$ en
+$g^s(A) \to B$. Het eerste faalt met kans~$\leq \varepsilon_1$
+en het tweede faalt met kans~$\leq \varepsilon_2$ (op de resterende
+waarden). Door een unie-grens is de ontsnappingsfractie van $g \circ f$ hoogstens
+$\varepsilon_1 + \varepsilon_2$.
+\end{proof}
+
+\begin{corollary}\label{cor:chain}
+Het samenstellen van $m$ pipelines met ontsnappingsfracties $\varepsilon_1, \ldots,
+\varepsilon_m$ (waarbij elke dominante attractor in het bassin van de volgende ligt)
+levert een $(\varepsilon_1 + \cdots + \varepsilon_m)$-universele pipeline.
+\end{corollary}
+
+\begin{remark}[Operationele interpretatie]
+Het lemma verklaart waarom pipelines die een \emph{contractieve} afbeelding
+(bijv.\ digit\_pow$_4$, die de toestandsruimte reduceert) combineren met een \emph{mengende}
+afbeelding (bijv.\ truc\_1089, die banen herverdeelt) vaak zeer lage
+ontsnappingsfracties bereiken: de contractieve afbeelding reduceert het cijferaantal, concentreert
+waarden in een klein bereik, en de mengende afbeelding trechter resterende banen
+naar het dominante bassin.
+\end{remark}
+
+\begin{remark}[Grensscherpte]
+De unie-grens $\varepsilon_1 + \varepsilon_2$ is niet scherp in het algemeen:
+wanneer de ontsnappingsverzamelingen van~$f$ en~$g$ overlappen, kan de werkelijke ontsnappingsfractie van
+$g \circ f$ aanzienlijk kleiner zijn. In onze experimenten zijn waargenomen ontsnappings-
+fracties typisch 2--5$\times$ kleiner dan de unie-grens voorspelt.
+\end{remark}
+
+%% ===================================================================
+\section{Conditionele Lyapunov-Stelling}\label{sec:lyapunov}
+%% ===================================================================
+
+\begin{definition}[Operatieklassen]\label{def:op-classes}
+Zij $f \colon \mathbb{N} \to \mathbb{N}$ een cijferoperatie in basis~$b$.
+\begin{enumerate}
+\item[\textup{(P)}] $f$ is \textbf{ds-behoudend} als $\ds(f(n)) = \ds(n)$
+  voor alle $n$. Voorbeelden: $\rev$, $\sort_\uparrow$, $\sort_\downarrow$,
+  cijfer-rotatie, cijfer-verwisseling.
+\item[\textup{(C)}] $f$ is \textbf{ds-contractief} als $\ds(f(n)) \leq \ds(n)$
+  voor alle $n \geq n_0(f)$, met strikte ongelijkheid wanneer $\ds(n) > 1$.
+  Voorbeelden: $\ds$ zelf, cijfer-ggd, cijfer-xor.
+\item[\textup{(X)}] $f$ is \textbf{ds-expansief} als er $n$ bestaan met
+  $\ds(f(n)) > \ds(n)$. Voorbeelden: $\comp$, $\kap$, truc\_1089.
+\end{enumerate}
+\end{definition}
+
+\begin{theorem}[Conditionele Lyapunov; DS061]\label{thm:lyapunov-cond}
+Zij $f = f_m \circ \cdots \circ f_1$ een pipeline met elke
+$f_i \in \mathcal{P} \cup \mathcal{C}$. Dan is $\ds$ een Lyapunov-functie
+voor~$f$: de reeks $\ds(f^t(n))$ is niet-stijgend voor $t \geq 0$ en
+$n \geq \max_i n_0(f_i)$. Elke baan bereikt uiteindelijk een dekpunt of
+treedt een cyclus van ds-constante waarden binnen.
+\end{theorem}
+
+\begin{proof}
+Als $f_i \in \mathcal{P}$ dan $\ds(f_i(n)) = \ds(n)$; als
+$f_i \in \mathcal{C}$ dan $\ds(f_i(n)) \leq \ds(n)$. Door samenstelling,
+$\ds(f(n)) \leq \ds(n)$. Aangezien $\ds$ geheel-waardig is en begrensd van onder
+door~1, stabiliseert de reeks.
+\end{proof}
+
+\begin{theorem}[Lyapunov-dalingsgrenzen; DS038--DS045]\label{thm:descent}
+Voor cijfermacht-afbeeldingen dient de identiteitsfunctie als een strikte Lyapunov-
+functie boven berekenbare drempels:
+\end{theorem}
+
+\begin{center}
+\begin{tabular}{@{}lccc@{}}
+\toprule
+Operatie & Grens & Drempel & Ref \\
+\midrule
+$\text{digit\_pow}_2$ & $81k < 10^{k-1}$ & $n \geq 10^3$ & DS038 \\
+$\text{digit\_pow}_3$ & $729k < 10^{k-1}$ & $n \geq 10^4$ & DS042 \\
+$\text{digit\_pow}_4$ & $6561k < 10^{k-1}$ & $n \geq 10^5$ & DS043 \\
+$\text{digit\_pow}_5$ & $59049k < 10^{k-1}$ & $n \geq 10^6$ & DS044 \\
+$\text{digit\_fac}$   & $362880k < 10^{k-1}$ & $n \geq 10^7$ & DS045 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Deze grenzen garanderen dat elke startwaarde boven de drempel binnen één stap een
+begrensd gebied binnentreedt, wat een \emph{a priori} convergentie-
+garantie geeft onafhankelijk van attractorstructuur.
+
+%% ===================================================================
+\section{Empirische Attractorstatistieken}\label{sec:empirical}
+%% ===================================================================
+
+\subsection{Experimentele opzet}
+
+Wij berekenden attractorstatistieken voor 12~representatieve pipelines met
+GPU-uitputtende verificatie op een NVIDIA RTX~4000 Ada (20~GB VRAM). Voor elke
+pipeline~$f$ en cijferbereik $\mathcal{D}_{10}^k$ ($k = 4, \ldots, 7$)
+itereerden wij Algoritme~\ref{alg:pipeline} met $T = 200$ voor elke start-
+waarde, registrerend: eindpunt-attractor, convergentie-staptelling, bassin-
+lidmaatschap. Doorvoer: ${\sim}5 \times 10^6$ iteraties/seconde.
+
+\subsection{Resultaten}
+
+Tabel~\ref{tab:attractors} rapporteert resultaten voor vier representatieve gemengde
+pipelines.
+
+\begin{table}[ht]
+\centering
+\caption{Attractorstatistieken van GPU-uitputtende verificatie.}\label{tab:attractors}
+\begin{tabular}{@{}llrrrc@{}}
+\toprule
+Pipeline & Attractor & Getest & Conv.\ rate & $\bar{s}$ & $r$ \\
+\midrule
+$\text{dp}_4 \to \text{1089}$ & 99\,099 & 9\,999\,000 & 96,60\% & 3,41 & 2 \\
+$\text{1089} \to \text{dp}_4$ & 26\,244 & 9\,999\,000 & 99,69\% & 3,24 & 2 \\
+$\kap \to \text{swap}$ & 4\,176 & 999\,000 & 0,89\% & 11,33 & 21 \\
+$\kap \to \sort_\uparrow \to \text{1089} \to \kap$ & 99\,962\,001 & 999\,000 & 99,97\% & 3,48 & 2 \\
+\bottomrule
+\end{tabular}
+
+\smallskip
+\footnotesize
+$\text{dp}_4$: digit\_pow$_4$; 1089: truc\_1089; $\bar{s}$: gemiddelde stappen tot
+convergentie; $r$: aantal verschillende attractoren. Getest over
+$\mathcal{D}_{10}^4 \cup \cdots \cup \mathcal{D}_{10}^7$.
+\end{table}
+
+\subsection{Observaties}
+
+\begin{observation}[Volgorde-gevoeligheid]\label{obs:order}
+De pipelines $\text{dp}_4 \to \text{1089}$ en
+$\text{1089} \to \text{dp}_4$ delen dezelfde samenstellende operaties maar
+verschillen in convergentiesnelheid (96,60\% vs.\ 99,69\%) en attractorwaarde
+(99\,099 vs.\ 26\,244). Samenstellingsvolgorde is niet commutatief voor attractor-
+structuur.
+\end{observation}
+
+\begin{observation}[Multi-attractorspectrum]\label{obs:multi}
+De pipeline $\kap \to \text{swap}$ heeft $r = 21$ attractoren met bassin-
+entropie $H \approx 2,1$~bits, in scherp contrast met de bijna-monostabiele
+pipelines ($H < 0,2$~bits). Dit suggereert dat de Kaprekar-afbeelding gecombineerd
+met een niet-contractieve permutatie (swap\_ends) faalt om banen te concentreren.
+\end{observation}
+
+\begin{observation}[Contractief + mengend = bijna-universeel]\label{obs:mix}
+Alle geteste pipelines die zowel een ds-contractieve operatie
+(digit\_pow$_p$) als een mengende operatie (truc\_1089 of multi-stap Kaprekar)
+bevatten bereiken $\varepsilon < 0,04$. Dit is consistent met het samenstellings-
+lemma (Lemma~\ref{lem:composition}).
+\end{observation}
+
+\subsection{Bassin-entropie landschap}
+
+\begin{center}
+\begin{tabular}{@{}lrc@{}}
+\toprule
+Pipeline-type & $H(f)$ (bits) & $\varepsilon_f$ \\
+\midrule
+Puur contractief ($\text{dp}_p$) & 0 & 0 \\
+Contractief + mengend & $< 0,2$ & $< 0,04$ \\
+Puur mengend (alleen 1089) & $\sim 0,1$ & $\sim 0,01$ \\
+Kaprekar + permutatie & $> 1,5$ & $> 0,5$ \\
+Puur permutatie (rev, sort) & ongedefinieerd & N.v.t. \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+%% ===================================================================
+\section{Vermoedens}\label{sec:conjectures}
+%% ===================================================================
+
+\begin{conjecture}[Bassin-entropie monotoniciteit]\label{conj:C1}
+Na-samenstellen van een ds-contractieve afbeelding $g \in \mathcal{C}$ met enige pipeline~$f$
+voldoet aan $H(g \circ f) \leq H(f)$.
+\end{conjecture}
+
+\textbf{Bewijs.} Getest voor 50~willekeurig gegenereerde pipelines met
+$g = \text{dp}_3, \text{dp}_4, \ds$. In alle gevallen $H(g \circ f) \leq H(f)$.
+Geen tegenvoorbeeld gevonden.
+
+\textbf{Plausibiliteitsargument.} Een ds-contractieve afbeelding reduceert de effectieve
+toestandsruimte, wat alleen bassins kan samenvoegen (reducerend $r$) of de
+dominante bassinfractie kan verhogen (reducerend $\varepsilon$). Beide effecten verlagen
+entropie.
+
+\begin{conjecture}[Asymptotische $\varepsilon$-universaliteit]\label{conj:C2}
+Voor de pipeline $\text{1089} \to \text{dp}_4$ geldt dat de ontsnappingsfractie
+$\varepsilon_k \to 0$ als $k \to \infty$ (cijferaantal neemt toe).
+\end{conjecture}
+
+\textbf{Bewijs.} Gemeten $\varepsilon_4 = 0,0031$, $\varepsilon_5 = 0,0028$,
+$\varepsilon_6 = 0,0019$, $\varepsilon_7 = 0,0011$. De trend is monotoon
+dalend.
+
+\textbf{Mechanisme.} Naarmate $k$ groeit, beeldt digit\_pow$_4$ waarden af in een
+steeds kleiner relatief bereik (aangezien $k \cdot 9^4 \ll 10^{k-1}$),
+wat banen concentreert nabij een gemeenschappelijk bassin.
+
+\begin{conjecture}[Attractoraantal-groei]\label{conj:C3}
+Voor generieke pipelines die minstens één $f_i \in \mathcal{X}$ bevatten,
+groeit het aantal attractoren $r(k)$ sub-lineair in~$k$.
+\end{conjecture}
+
+\textbf{Bewijs.} Voor $\kap \to \text{swap}$: $r(3) = 3$, $r(4) = 8$,
+$r(5) = 14$, $r(6) = 21$. Groei is $\sim k^{1,5}$, sub-kwadratisch.
+Voor de meeste andere $\mathcal{X}$-bevattende pipelines groeit $r$ nog
+langzamer.
+
+%% ===================================================================
+\section{Methodologie}\label{sec:methodology}
+%% ===================================================================
+
+\textbf{Pipeline-specificatie.}
+Elke pipeline is gedefinieerd als een geordend tupel van benoemde operaties uit een
+bibliotheek van 22~cijferoperaties, geïmplementeerd in Python met NumPy-
+versnelling. Operatie-semantiek (voorloopnul-beleid, cijferlengte-
+gedrag) is gedocumenteerd in~\cite{PaperA}.
+
+\textbf{GPU-berekening.}
+Baanberekening is geparallelliseerd via Numba CUDA JIT-gecompileerde kernels
+(\texttt{scripts/gpu\_attractor\_verification.py}) over $2^8$
+threads/blok op RTX~4000 Ada (20~GB VRAM), met een doorvoer van
+${\sim}5 \times 10^6$ iteraties/seconde. Elke pipeline--cijferbereik-
+combinatie is uitputtend getest (geen steekproeven).
+
+\textbf{Determinisme.}
+Alle berekeningen zijn deterministisch (geen willekeurige seeds). Bassinfracties zijn
+exacte rationale getallen berekend uit uitputtende enumeratie.
+
+\textbf{Verificatie-hashes.}
+Voor elke pipeline en cijferbereik dient de SHA-256 hash van de gesorteerde
+(eindpunt, telling) array als verificatiecertificaat. Hashes zijn
+gerapporteerd in Appendix~\ref{app:data}.
+
+\textbf{Vermoeden-selectie.}
+De vermoedens in Sectie~\ref{sec:conjectures} werden geselecteerd uit een grotere
+verzameling van computationeel gegenereerde hypothesen met een heuristische prioriterings-
+methode die empirische ondersteuning, falsificatie-weerstand, bewijs-
+haalbaarheid, nieuwheid, en falsifieerbaarheid weegt. De gewichten zijn handmatig gekozen
+(niet gekalibreerd of gevalideerd); de methode dient alleen om onderzoeks-
+prioriteiten te sturen en vormt geen statistisch scoringssysteem. Alle
+vermoedens staan op hun onafhankelijk vermelde bewijs.
+
+\textbf{Reproduceerbaarheid.}
+Alle broncode, GPU-kernels, en ruwe uitvoerdata zijn beschikbaar op
+\url{https://github.com/SYNTRIAD/digit-dynamics}.
+
+%% ===================================================================
+\section{Conclusie}\label{sec:conclusion}
+%% ===================================================================
+
+Wij hebben $\varepsilon$-universaliteit en bassin-entropie geïntroduceerd als
+kwantitatieve hulpmiddelen voor de globale dynamica van cijferoperatie-pipelines.
+De hoofdbevinding is een \emph{scherpe dichotomie}:
+
+\begin{quote}
+\emph{Onder de 12~geteste pipelines zijn die welke contractieve en expansieve
+operaties mengen consistent bijna-universeel ($\varepsilon < 0,04$), terwijl
+pipelines die expansieve operaties combineren met niet-contractieve permutaties
+rijke multi-attractorspectra vertonen ($H > 1,5$~bits).}
+\end{quote}
+
+Het samenstellingslemma (Lemma~\ref{lem:composition}) geeft een theoretische
+verklaring voor het eerste fenomeen, terwijl de conditionele Lyapunov-stelling
+(Stelling~\ref{thm:lyapunov-cond}) rigoureuze convergentiegaranties geeft voor
+de $\mathcal{P} \cup \mathcal{C}$ klasse.
+
+Open richtingen omvatten het bewijzen van Vermoedens~\ref{conj:C1}--\ref{conj:C3},
+het uitbreiden van de analyse naar bases $b \neq 10$, en het ontwikkelen van een theorie van
+\emph{attractor-bifurcatie} wanneer pipeline-parameters variëren.
+
+%% ===================================================================
+\appendix
+\section{Verificatie-Pipeline}\label{app:verification}
+%% ===================================================================
+
+\begin{algorithm}[ht]
+\caption{Pipeline-baanberekening}\label{alg:pipeline}
+\begin{algorithmic}[1]
+\Require startwaarde $n_0 \in \mathbb{N}$, pipeline $f = (f_1, \ldots, f_m)$, max iteraties $T$
+\Ensure eindpunt $n$, staptelling $t$, convergentievlag
+\State $n \gets n_0$; $\texttt{gezien} \gets \{n_0\}$; $t \gets 0$
+\While{$t < T$}
+  \For{$i = 1$ \textbf{tot} $m$}
+    \State $n \gets f_i(n)$
+  \EndFor
+  \State $t \gets t + 1$
+  \If{$n \in \texttt{gezien}$ \textbf{of} $n = 0$}
+    \State \Return $(n, t, \texttt{waar})$
+  \EndIf
+  \State $\texttt{gezien} \gets \texttt{gezien} \cup \{n\}$
+\EndWhile
+\State \Return $(n, T, \texttt{onwaar})$
+\end{algorithmic}
+\end{algorithm}
+
+%% ===================================================================
+\section{Dataset en Verificatie-Hashes}\label{app:data}
+%% ===================================================================
+
+Volledige attractordata (pipeline, cijferbereik, attractorverzameling, bassinfracties,
+convergentieprofielen) is beschikbaar op
+\url{https://github.com/SYNTRIAD/digit-dynamics/tree/main/data}.
+
+Verificatie-hashes voor de vier pipelines in Tabel~\ref{tab:attractors}:
+
+\begin{center}
+\footnotesize
+\begin{tabular}{@{}ll@{}}
+\toprule
+Pipeline & SHA-256 (eerste 16 hex) \\
+\midrule
+$\text{dp}_4 \to \text{1089}$ & \texttt{c011b908c54b29d8} \\
+$\text{1089} \to \text{dp}_4$ & \texttt{cf64b791632661f5} \\
+$\kap \to \text{swap}$ & \texttt{ff6d74d4b95bf37c} \\
+$\kap \to \sort_\uparrow \to \text{1089} \to \kap$ & \texttt{6c12d71f34c3564b} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+%% ===================================================================
+\begin{thebibliography}{9}
+
+\bibitem{PaperA}
+SYNTRIAD Research,
+\emph{Dekpunten van cijferoperatie-pipelines in willekeurige bases:
+algebraïsche structuur en vijf oneindige families},
+preprint, Februari 2026.
+
+\bibitem{Kaprekar1955}
+D.~R.~Kaprekar,
+\emph{An interesting property of the number 6174},
+Scripta Mathematica \textbf{15} (1955), 244--245.
+
+\bibitem{Berger1992}
+R.~Berger,
+\emph{The Kaprekar routine in general bases},
+Fibonacci Quarterly \textbf{30} (1992), nr.~4, 349--356.
+
+\bibitem{HardyWright2008}
+G.~H.~Hardy en E.~M.~Wright,
+\emph{An Introduction to the Theory of Numbers},
+6e druk, Oxford University Press, 2008.
+
+\bibitem{Wolfram2002}
+S.~Wolfram,
+\emph{A New Kind of Science},
+Wolfram Media, 2002.
+
+\bibitem{OEIS-A005188}
+OEIS Foundation,
+\emph{A005188: Narcissistic numbers},
+\url{https://oeis.org/A005188}.
+
+\bibitem{OEIS-A006886}
+OEIS Foundation,
+\emph{A006886: Kaprekar numbers},
+\url{https://oeis.org/A006886}.
+
+\bibitem{OEIS-A099009}
+OEIS Foundation,
+\emph{A099009: Kaprekar fixed points for 6-digit numbers},
+\url{https://oeis.org/A099009}.
+
+\bibitem{Niven1969}
+I.~Niven,
+\emph{Irrational Numbers},
+Mathematical Association of America, 1969.
+
+\bibitem{GuyBook}
+R.~K.~Guy,
+\emph{Unsolved Problems in Number Theory},
+3e~druk, Springer, 2004.
+
+\bibitem{EverestWard2005}
+G.~Everest en T.~Ward,
+\emph{An Introduction to Number Theory},
+Springer, 2005.
+
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,574 @@
+{
+  "experiments": [
+    {
+      "avg_steps": "3.930415263749",
+      "basin_entropy": "0.316386080242",
+      "basin_fractions": {
+        "0": "0.057239057239",
+        "495": "0.942760942761"
+      },
+      "convergence_rate": "0.942760942761",
+      "cycles": [],
+      "domain_hash": "f345c08f2f407d0a144632a16f5502c663b8d3318e89626bfe3a5d6d6cdd6452",
+      "domain_json": "{\"base\":10,\"digit_length\":3,\"engine_semantic_version\":\"2.0\",\"exclude_repdigits\":true,\"exclude_zero\":true,\"include_cycles\":true,\"leading_zero_policy\":\"drops\",\"version\":\"1.0\"}",
+      "duration_seconds": 0.0045108795166015625,
+      "engine_version": "16.0",
+      "fixed_points": [
+        0,
+        495
+      ],
+      "id": 1,
+      "max_steps": 6,
+      "median_steps": "4.000000000000",
+      "mode": "exhaustive",
+      "num_attractors": 2,
+      "num_startpoints": 891,
+      "op_registry_hash": "db3a7d129dc4025b79ded1966449d4bfb891dff8f914ac3ad9fc84c0aec42512",
+      "pipeline_display": "kaprekar_step",
+      "pipeline_hash": "d94bbe6733eff09378d6da09e21dacebdeb57178678f0b6ffe29fa2462f5fa39",
+      "pipeline_json": "{\"pipeline\":[{\"op\":\"kaprekar_step\"}],\"version\":\"2.0\"}",
+      "result_hash": "57415d2aca454a4afbb513d549bedcf4fd3ada980b18307775c24dde31906671",
+      "sample_seed": null,
+      "sample_size": null,
+      "timestamp": "2026-02-25T00:49:59.990515"
+    },
+    {
+      "avg_steps": "5.648314981648",
+      "basin_entropy": "0.064165715333",
+      "basin_fractions": {
+        "0": "0.007563118674",
+        "6174": "0.992436881326"
+      },
+      "convergence_rate": "0.992436881326",
+      "cycles": [],
+      "domain_hash": "b57868e30d00cf66999496e8dbe70a230607bb07380e6d05e5d464ede151c63b",
+      "domain_json": "{\"base\":10,\"digit_length\":4,\"engine_semantic_version\":\"2.0\",\"exclude_repdigits\":true,\"exclude_zero\":true,\"include_cycles\":true,\"leading_zero_policy\":\"drops\",\"version\":\"1.0\"}",
+      "duration_seconds": 0.06953930854797363,
+      "engine_version": "16.0",
+      "fixed_points": [
+        0,
+        6174
+      ],
+      "id": 2,
+      "max_steps": 8,
+      "median_steps": "6.000000000000",
+      "mode": "exhaustive",
+      "num_attractors": 2,
+      "num_startpoints": 8991,
+      "op_registry_hash": "db3a7d129dc4025b79ded1966449d4bfb891dff8f914ac3ad9fc84c0aec42512",
+      "pipeline_display": "kaprekar_step",
+      "pipeline_hash": "d94bbe6733eff09378d6da09e21dacebdeb57178678f0b6ffe29fa2462f5fa39",
+      "pipeline_json": "{\"pipeline\":[{\"op\":\"kaprekar_step\"}],\"version\":\"2.0\"}",
+      "result_hash": "e758bdedc3f55d109e80ba2acaba9f67ac7aa2b5e2a5119c076c43a638ca0603",
+      "sample_seed": null,
+      "sample_size": null,
+      "timestamp": "2026-02-25T00:50:00.061066"
+    },
+    {
+      "avg_steps": "6.561000544499",
+      "basin_entropy": "2.744031245983",
+      "basin_fractions": {
+        "0": "0.000944538898",
+        "53955": "0.028747319176",
+        "59994": "0.004611572268",
+        "61974": "0.053005300530",
+        "62964": "0.052827504973",
+        "63954": "0.268515740463",
+        "71973": "0.064628685091",
+        "74943": "0.308075251970",
+        "75933": "0.100321143225",
+        "82962": "0.064539787312",
+        "83952": "0.053783156093"
+      },
+      "convergence_rate": "0.308075251970",
+      "cycles": [
+        {
+          "length": 4,
+          "members": [
+            62964,
+            71973,
+            74943,
+            83952
+          ]
+        },
+        {
+          "length": 4,
+          "members": [
+            61974,
+            63954,
+            75933,
+            82962
+          ]
+        },
+        {
+          "length": 2,
+          "members": [
+            53955,
+            59994
+          ]
+        }
+      ],
+      "domain_hash": "6b9d6cd595b7131b365404f10a915dbb36500e7073812aadbbac71e55078eded",
+      "domain_json": "{\"base\":10,\"digit_length\":5,\"engine_semantic_version\":\"2.0\",\"exclude_repdigits\":true,\"exclude_zero\":true,\"include_cycles\":true,\"leading_zero_policy\":\"drops\",\"version\":\"1.0\"}",
+      "duration_seconds": 0.8252971172332764,
+      "engine_version": "16.0",
+      "fixed_points": [
+        0
+      ],
+      "id": 3,
+      "max_steps": 10,
+      "median_steps": "6.000000000000",
+      "mode": "exhaustive",
+      "num_attractors": 11,
+      "num_startpoints": 89991,
+      "op_registry_hash": "db3a7d129dc4025b79ded1966449d4bfb891dff8f914ac3ad9fc84c0aec42512",
+      "pipeline_display": "kaprekar_step",
+      "pipeline_hash": "d94bbe6733eff09378d6da09e21dacebdeb57178678f0b6ffe29fa2462f5fa39",
+      "pipeline_json": "{\"pipeline\":[{\"op\":\"kaprekar_step\"}],\"version\":\"2.0\"}",
+      "result_hash": "488c49efd3f675f4708735323faa11f025f9a2c4efd316877cc1eea7e6610e14",
+      "sample_seed": null,
+      "sample_size": null,
+      "timestamp": "2026-02-25T00:50:00.888037"
+    },
+    {
+      "avg_steps": "11.861231945653",
+      "basin_entropy": "2.431349660762",
+      "basin_fractions": {
+        "0": "0.000113334467",
+        "420876": "0.354351321291",
+        "549945": "0.002016686834",
+        "631764": "0.062422846451",
+        "642654": "0.026889157780",
+        "750843": "0.038105936615",
+        "840852": "0.059878376562",
+        "851742": "0.291131800207",
+        "860832": "0.131045754902",
+        "862632": "0.034044784892"
+      },
+      "convergence_rate": "0.354351321291",
+      "cycles": [
+        {
+          "length": 7,
+          "members": [
+            420876,
+            642654,
+            750843,
+            840852,
+            851742,
+            860832,
+            862632
+          ]
+        }
+      ],
+      "domain_hash": "2656fd5ea4ea533e49b625773ef30c954c0f8b54bcc00c39647138e9eac632ec",
+      "domain_json": "{\"base\":10,\"digit_length\":6,\"engine_semantic_version\":\"2.0\",\"exclude_repdigits\":true,\"exclude_zero\":true,\"include_cycles\":true,\"leading_zero_policy\":\"drops\",\"version\":\"1.0\"}",
+      "duration_seconds": 14.914530277252197,
+      "engine_version": "16.0",
+      "fixed_points": [
+        0,
+        549945,
+        631764
+      ],
+      "id": 4,
+      "max_steps": 20,
+      "median_steps": "12.000000000000",
+      "mode": "exhaustive",
+      "num_attractors": 10,
+      "num_startpoints": 899991,
+      "op_registry_hash": "db3a7d129dc4025b79ded1966449d4bfb891dff8f914ac3ad9fc84c0aec42512",
+      "pipeline_display": "kaprekar_step",
+      "pipeline_hash": "d94bbe6733eff09378d6da09e21dacebdeb57178678f0b6ffe29fa2462f5fa39",
+      "pipeline_json": "{\"pipeline\":[{\"op\":\"kaprekar_step\"}],\"version\":\"2.0\"}",
+      "result_hash": "6507a0ac820d0880fbdd9fa870fcc05ed6d90221e3c8a26fbb15ec9535ccc285",
+      "sample_seed": null,
+      "sample_size": null,
+      "timestamp": "2026-02-25T00:50:15.804077"
+    },
+    {
+      "avg_steps": "13.409439964996",
+      "basin_entropy": "1.729675462840",
+      "basin_fractions": {
+        "0": "0.000013222235",
+        "7509843": "0.112555668111",
+        "7519743": "0.017886684553",
+        "7619733": "0.039812039812",
+        "8429652": "0.671459560348",
+        "8439552": "0.026792693459",
+        "8649432": "0.079845079845",
+        "8719722": "0.017925017925",
+        "9529641": "0.033710033710"
+      },
+      "convergence_rate": "0.671459560348",
+      "cycles": [
+        {
+          "length": 8,
+          "members": [
+            7509843,
+            7519743,
+            7619733,
+            8429652,
+            8439552,
+            8649432,
+            8719722,
+            9529641
+          ]
+        }
+      ],
+      "domain_hash": "92f37cf136da0b5d25a37e76f46898b8bb3e0dad81d543b1e39330608c9ca65b",
+      "domain_json": "{\"base\":10,\"digit_length\":7,\"engine_semantic_version\":\"2.0\",\"exclude_repdigits\":true,\"exclude_zero\":true,\"include_cycles\":true,\"leading_zero_policy\":\"drops\",\"version\":\"1.0\"}",
+      "duration_seconds": 170.48147535324097,
+      "engine_version": "16.0",
+      "fixed_points": [
+        0
+      ],
+      "id": 5,
+      "max_steps": 21,
+      "median_steps": "14.000000000000",
+      "mode": "exhaustive",
+      "num_attractors": 9,
+      "num_startpoints": 8999991,
+      "op_registry_hash": "db3a7d129dc4025b79ded1966449d4bfb891dff8f914ac3ad9fc84c0aec42512",
+      "pipeline_display": "kaprekar_step",
+      "pipeline_hash": "d94bbe6733eff09378d6da09e21dacebdeb57178678f0b6ffe29fa2462f5fa39",
+      "pipeline_json": "{\"pipeline\":[{\"op\":\"kaprekar_step\"}],\"version\":\"2.0\"}",
+      "result_hash": "a0b2e1d8c3a2a72009e43e07f7097246d8c6612896c965a8d9286d1362665b14",
+      "sample_seed": null,
+      "sample_size": null,
+      "timestamp": "2026-02-25T00:53:06.268753"
+    },
+    {
+      "avg_steps": "2.988888888889",
+      "basin_entropy": "0.468995593589",
+      "basin_fractions": {
+        "0": "0.100000000000",
+        "10890": "0.900000000000"
+      },
+      "convergence_rate": "0.900000000000",
+      "cycles": [],
+      "domain_hash": "47c46532fa5ef2f4680a871aafe0eb5a29cd53d2d794430245e016c7e9989947",
+      "domain_json": "{\"base\":10,\"digit_length\":3,\"engine_semantic_version\":\"2.0\",\"exclude_repdigits\":false,\"exclude_zero\":true,\"include_cycles\":true,\"leading_zero_policy\":\"drops\",\"version\":\"1.0\"}",
+      "duration_seconds": 0.0026590824127197266,
+      "engine_version": "16.0",
+      "fixed_points": [
+        0,
+        10890
+      ],
+      "id": 6,
+      "max_steps": 4,
+      "median_steps": "3.000000000000",
+      "mode": "exhaustive",
+      "num_attractors": 2,
+      "num_startpoints": 900,
+      "op_registry_hash": "db3a7d129dc4025b79ded1966449d4bfb891dff8f914ac3ad9fc84c0aec42512",
+      "pipeline_display": "truc_1089",
+      "pipeline_hash": "6693c79e6123dd4d025fa84f5085fc4509cd30757ba0d7294245464ae8a5cba4",
+      "pipeline_json": "{\"pipeline\":[{\"op\":\"truc_1089\"}],\"version\":\"2.0\"}",
+      "result_hash": "83733632e65020ce189235e10397ba51bef528d2d04507eda9db7a06ac6eac51",
+      "sample_seed": null,
+      "sample_size": null,
+      "timestamp": "2026-02-25T00:53:06.295105"
+    },
+    {
+      "avg_steps": "2.364444444444",
+      "basin_entropy": "1.356682396408",
+      "basin_fractions": {
+        "0": "0.422777777778",
+        "10890": "0.481555555556",
+        "109890": "0.095666666667"
+      },
+      "convergence_rate": "0.481555555556",
+      "cycles": [],
+      "domain_hash": "cc99da5c9f8e832bac55206fc34311be5d5510a01808fbd52016edc826495457",
+      "domain_json": "{\"base\":10,\"digit_length\":4,\"engine_semantic_version\":\"2.0\",\"exclude_repdigits\":false,\"exclude_zero\":true,\"include_cycles\":true,\"leading_zero_policy\":\"drops\",\"version\":\"1.0\"}",
+      "duration_seconds": 0.018949270248413086,
+      "engine_version": "16.0",
+      "fixed_points": [
+        0,
+        10890,
+        109890
+      ],
+      "id": 7,
+      "max_steps": 6,
+      "median_steps": "2.000000000000",
+      "mode": "exhaustive",
+      "num_attractors": 3,
+      "num_startpoints": 9000,
+      "op_registry_hash": "db3a7d129dc4025b79ded1966449d4bfb891dff8f914ac3ad9fc84c0aec42512",
+      "pipeline_display": "truc_1089",
+      "pipeline_hash": "6693c79e6123dd4d025fa84f5085fc4509cd30757ba0d7294245464ae8a5cba4",
+      "pipeline_json": "{\"pipeline\":[{\"op\":\"truc_1089\"}],\"version\":\"2.0\"}",
+      "result_hash": "e37bf75436ba5bacefb666ea565887d58bbc5420637134b396506f7fef423b4a",
+      "sample_seed": null,
+      "sample_size": null,
+      "timestamp": "2026-02-25T00:53:06.315059"
+    },
+    {
+      "avg_steps": "2.275766666667",
+      "basin_entropy": "1.690703471231",
+      "basin_fractions": {
+        "0": "0.386666666667",
+        "10890": "0.095666666667",
+        "109890": "0.427666666667",
+        "1099890": "0.090000000000"
+      },
+      "convergence_rate": "0.427666666667",
+      "cycles": [],
+      "domain_hash": "fe3c4801e197ed095f5b8fdeec3b38b73788d635e395e690f2129736e83e799c",
+      "domain_json": "{\"base\":10,\"digit_length\":5,\"engine_semantic_version\":\"2.0\",\"exclude_repdigits\":false,\"exclude_zero\":true,\"include_cycles\":true,\"leading_zero_policy\":\"drops\",\"version\":\"1.0\"}",
+      "duration_seconds": 0.18993520736694336,
+      "engine_version": "16.0",
+      "fixed_points": [
+        0,
+        10890,
+        109890,
+        1099890
+      ],
+      "id": 8,
+      "max_steps": 4,
+      "median_steps": "2.000000000000",
+      "mode": "exhaustive",
+      "num_attractors": 4,
+      "num_startpoints": 90000,
+      "op_registry_hash": "db3a7d129dc4025b79ded1966449d4bfb891dff8f914ac3ad9fc84c0aec42512",
+      "pipeline_display": "truc_1089",
+      "pipeline_hash": "6693c79e6123dd4d025fa84f5085fc4509cd30757ba0d7294245464ae8a5cba4",
+      "pipeline_json": "{\"pipeline\":[{\"op\":\"truc_1089\"}],\"version\":\"2.0\"}",
+      "result_hash": "2b714d3da22ffe1b126a85f7c5b4859faf042ea13bc6a75ca8e19b2b79796d97",
+      "sample_seed": null,
+      "sample_size": null,
+      "timestamp": "2026-02-25T00:53:06.506510"
+    },
+    {
+      "avg_steps": "3.689430000000",
+      "basin_entropy": "2.438784561064",
+      "basin_fractions": {
+        "0": "0.225737777778",
+        "10890": "0.196462222222",
+        "1089990": "0.203196666667",
+        "109890": "0.019865555556",
+        "1099890": "0.113920000000",
+        "10999890": "0.009925555556",
+        "109999890": "0.230721111111",
+        "188298": "0.000171111111"
+      },
+      "convergence_rate": "0.230721111111",
+      "cycles": [
+        {
+          "length": 2,
+          "members": [
+            188298,
+            1089990
+          ]
+        }
+      ],
+      "domain_hash": "f5a55310c86a8a6eae6a09c0f7f9e5daff20de7e98538b37d390b0d1a8d53d65",
+      "domain_json": "{\"base\":10,\"digit_length\":6,\"engine_semantic_version\":\"2.0\",\"exclude_repdigits\":false,\"exclude_zero\":true,\"include_cycles\":true,\"leading_zero_policy\":\"drops\",\"version\":\"1.0\"}",
+      "duration_seconds": 2.910959005355835,
+      "engine_version": "16.0",
+      "fixed_points": [
+        0,
+        10890,
+        109890,
+        1099890,
+        10999890,
+        109999890
+      ],
+      "id": 9,
+      "max_steps": 9,
+      "median_steps": "4.000000000000",
+      "mode": "exhaustive",
+      "num_attractors": 8,
+      "num_startpoints": 900000,
+      "op_registry_hash": "db3a7d129dc4025b79ded1966449d4bfb891dff8f914ac3ad9fc84c0aec42512",
+      "pipeline_display": "truc_1089",
+      "pipeline_hash": "6693c79e6123dd4d025fa84f5085fc4509cd30757ba0d7294245464ae8a5cba4",
+      "pipeline_json": "{\"pipeline\":[{\"op\":\"truc_1089\"}],\"version\":\"2.0\"}",
+      "result_hash": "edddd7fbe99723d391a3452303807182db7b7a3a9d6a4835d44f0cafc6972157",
+      "sample_seed": null,
+      "sample_size": null,
+      "timestamp": "2026-02-25T00:53:09.416468"
+    },
+    {
+      "avg_steps": "83.393095333333",
+      "basin_entropy": "1.910800093110",
+      "basin_fractions": {
+        "-1": "0.403451111111",
+        "0": "0.055443333333",
+        "10890": "0.025552222222",
+        "108910890": "0.037874444444",
+        "1089990": "0.000547888889",
+        "109890": "0.006020000000",
+        "1099890": "0.418381111111",
+        "10999890": "0.043314444444",
+        "109999890": "0.009245555556",
+        "188298": "0.000169888889"
+      },
+      "convergence_rate": "0.418381111111",
+      "cycles": [
+        {
+          "length": 2,
+          "members": [
+            188298,
+            1089990
+          ]
+        }
+      ],
+      "domain_hash": "d91384cc7738c4d6f413dea3249423de3d19fb6dd4791ab672e0b055381b776d",
+      "domain_json": "{\"base\":10,\"digit_length\":7,\"engine_semantic_version\":\"2.0\",\"exclude_repdigits\":false,\"exclude_zero\":true,\"include_cycles\":true,\"leading_zero_policy\":\"drops\",\"version\":\"1.0\"}",
+      "duration_seconds": 1413.7628314495087,
+      "engine_version": "16.0",
+      "fixed_points": [
+        0,
+        10890,
+        109890,
+        1099890,
+        10999890,
+        108910890,
+        109999890
+      ],
+      "id": 10,
+      "max_steps": 200,
+      "median_steps": "6.000000000000",
+      "mode": "exhaustive",
+      "num_attractors": 10,
+      "num_startpoints": 9000000,
+      "op_registry_hash": "db3a7d129dc4025b79ded1966449d4bfb891dff8f914ac3ad9fc84c0aec42512",
+      "pipeline_display": "truc_1089",
+      "pipeline_hash": "6693c79e6123dd4d025fa84f5085fc4509cd30757ba0d7294245464ae8a5cba4",
+      "pipeline_json": "{\"pipeline\":[{\"op\":\"truc_1089\"}],\"version\":\"2.0\"}",
+      "result_hash": "6b5162f2b6820954a0320531e7d173f04e25ebff2cf24bc6272153d14822d35f",
+      "sample_seed": null,
+      "sample_size": null,
+      "timestamp": "2026-02-25T01:16:43.163599"
+    },
+    {
+      "avg_steps": "3.406517628740",
+      "basin_entropy": "0.329886050270",
+      "basin_fractions": {
+        "0": "0.060616171727",
+        "99099": "0.939383828273"
+      },
+      "convergence_rate": "0.939383828273",
+      "cycles": [],
+      "domain_hash": "b57868e30d00cf66999496e8dbe70a230607bb07380e6d05e5d464ede151c63b",
+      "domain_json": "{\"base\":10,\"digit_length\":4,\"engine_semantic_version\":\"2.0\",\"exclude_repdigits\":true,\"exclude_zero\":true,\"include_cycles\":true,\"leading_zero_policy\":\"drops\",\"version\":\"1.0\"}",
+      "duration_seconds": 0.06074929237365723,
+      "engine_version": "16.0",
+      "fixed_points": [
+        0,
+        99099
+      ],
+      "id": 11,
+      "max_steps": 6,
+      "median_steps": "3.000000000000",
+      "mode": "exhaustive",
+      "num_attractors": 2,
+      "num_startpoints": 8991,
+      "op_registry_hash": "db3a7d129dc4025b79ded1966449d4bfb891dff8f914ac3ad9fc84c0aec42512",
+      "pipeline_display": "digit_pow4 |> truc_1089",
+      "pipeline_hash": "e8dd35666d43cc123e2a5fb79c358b9d3870f6d5bb06cda9e84da93c86bd27cb",
+      "pipeline_json": "{\"pipeline\":[{\"op\":\"digit_pow4\"},{\"op\":\"truc_1089\"}],\"version\":\"2.0\"}",
+      "result_hash": "c011b908c54b29d892c2e7594ab65b84e79389047ec1d01784e8abddc5bfb905",
+      "sample_seed": null,
+      "sample_size": null,
+      "timestamp": "2026-02-25T01:16:43.246091"
+    },
+    {
+      "avg_steps": "3.158380602825",
+      "basin_entropy": "0.287081635936",
+      "basin_fractions": {
+        "0": "0.050161272383",
+        "26244": "0.949838727617"
+      },
+      "convergence_rate": "0.949838727617",
+      "cycles": [],
+      "domain_hash": "b57868e30d00cf66999496e8dbe70a230607bb07380e6d05e5d464ede151c63b",
+      "domain_json": "{\"base\":10,\"digit_length\":4,\"engine_semantic_version\":\"2.0\",\"exclude_repdigits\":true,\"exclude_zero\":true,\"include_cycles\":true,\"leading_zero_policy\":\"drops\",\"version\":\"1.0\"}",
+      "duration_seconds": 0.05573439598083496,
+      "engine_version": "16.0",
+      "fixed_points": [
+        0,
+        26244
+      ],
+      "id": 12,
+      "max_steps": 6,
+      "median_steps": "3.000000000000",
+      "mode": "exhaustive",
+      "num_attractors": 2,
+      "num_startpoints": 8991,
+      "op_registry_hash": "db3a7d129dc4025b79ded1966449d4bfb891dff8f914ac3ad9fc84c0aec42512",
+      "pipeline_display": "truc_1089 |> digit_pow4",
+      "pipeline_hash": "a3cb2a3b0197c0756d14373237dc10f54d93504d63e2d35e9674be19291419b0",
+      "pipeline_json": "{\"pipeline\":[{\"op\":\"truc_1089\"},{\"op\":\"digit_pow4\"}],\"version\":\"2.0\"}",
+      "result_hash": "cf64b791632661f5cfb1eda1416d9183c1719db7acfcc781de28a8d2db836c16",
+      "sample_seed": null,
+      "sample_size": null,
+      "timestamp": "2026-02-25T01:16:43.303854"
+    },
+    {
+      "avg_steps": "5.648314981648",
+      "basin_entropy": "0.064165715333",
+      "basin_fractions": {
+        "0": "0.007563118674",
+        "4176": "0.992436881326"
+      },
+      "convergence_rate": "0.992436881326",
+      "cycles": [],
+      "domain_hash": "b57868e30d00cf66999496e8dbe70a230607bb07380e6d05e5d464ede151c63b",
+      "domain_json": "{\"base\":10,\"digit_length\":4,\"engine_semantic_version\":\"2.0\",\"exclude_repdigits\":true,\"exclude_zero\":true,\"include_cycles\":true,\"leading_zero_policy\":\"drops\",\"version\":\"1.0\"}",
+      "duration_seconds": 0.09055519104003906,
+      "engine_version": "16.0",
+      "fixed_points": [
+        0,
+        4176
+      ],
+      "id": 13,
+      "max_steps": 8,
+      "median_steps": "6.000000000000",
+      "mode": "exhaustive",
+      "num_attractors": 2,
+      "num_startpoints": 8991,
+      "op_registry_hash": "db3a7d129dc4025b79ded1966449d4bfb891dff8f914ac3ad9fc84c0aec42512",
+      "pipeline_display": "kaprekar_step |> swap_ends",
+      "pipeline_hash": "ef4fca2e80f901263399f3ae0b2698781be5a4f4111eb8683af6f77fd67a426b",
+      "pipeline_json": "{\"pipeline\":[{\"op\":\"kaprekar_step\"},{\"op\":\"swap_ends\"}],\"version\":\"2.0\"}",
+      "result_hash": "ff6d74d4b95bf37c9a75606dfc09b06e17aa724cd9bc9e268643869e49313813",
+      "sample_seed": null,
+      "sample_size": null,
+      "timestamp": "2026-02-25T01:16:43.396114"
+    },
+    {
+      "avg_steps": "5.269380491603",
+      "basin_entropy": "0.064165715333",
+      "basin_fractions": {
+        "0": "0.007563118674",
+        "99962001": "0.992436881326"
+      },
+      "convergence_rate": "0.992436881326",
+      "cycles": [],
+      "domain_hash": "b57868e30d00cf66999496e8dbe70a230607bb07380e6d05e5d464ede151c63b",
+      "domain_json": "{\"base\":10,\"digit_length\":4,\"engine_semantic_version\":\"2.0\",\"exclude_repdigits\":true,\"exclude_zero\":true,\"include_cycles\":true,\"leading_zero_policy\":\"drops\",\"version\":\"1.0\"}",
+      "duration_seconds": 0.17934513092041016,
+      "engine_version": "16.0",
+      "fixed_points": [
+        0,
+        99962001
+      ],
+      "id": 14,
+      "max_steps": 6,
+      "median_steps": "5.000000000000",
+      "mode": "exhaustive",
+      "num_attractors": 2,
+      "num_startpoints": 8991,
+      "op_registry_hash": "db3a7d129dc4025b79ded1966449d4bfb891dff8f914ac3ad9fc84c0aec42512",
+      "pipeline_display": "kaprekar_step |> sort_asc |> truc_1089 |> kaprekar_step",
+      "pipeline_hash": "801804630a49d7758e00594ef521d4e7f70914db1586389fcbb198c3f00a00e2",
+      "pipeline_json": "{\"pipeline\":[{\"op\":\"kaprekar_step\"},{\"op\":\"sort_asc\"},{\"op\":\"truc_1089\"},{\"op\":\"kaprekar_step\"}],\"version\":\"2.0\"}",
+      "result_hash": "6c12d71f34c3564b7cc016002f2f35b2bf2836bff7e5f962d59b81acaa568d5a",
+      "sample_seed": null,
+      "sample_size": null,
+      "timestamp": "2026-02-25T01:16:43.576460"
+    }
+  ],
+  "schema_version": "1.0"
+}

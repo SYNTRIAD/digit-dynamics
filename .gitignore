@@ -1,0 +1,33 @@
+﻿# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+*.egg-info/
+venv/
+env/
+
+# Data
+*.db
+*.sqlite
+*.db-journal
+
+# OS
+.DS_Store
+Thumbs.db
+*.swp
+._.DS_Store
+
+# IDE
+.vscode/
+.idea/
+*.sublime-*
+
+# Builds
+build/
+dist/
+*.egg-info/
+
+# Temporary files
+*.tmp
+*.log
