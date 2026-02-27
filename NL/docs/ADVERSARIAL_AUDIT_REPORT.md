@@ -124,7 +124,7 @@ Bibliography (7 entries)
 | CLR-021 | B | Conj 3 (§6) | Attractor count sub-linear growth | CONJECTURAL | MODERATE |
 | CLR-022 | B | §7 | GPU-exhaustive over 10^7 starting values, deterministic, SHA-256 verified | METHODOLOGICAL | MODERATE |
 | CLR-023 | B | §5 | "GPU-exhaustive computation over 10^7 starting values" | EMPIRICAL | MODERATE |
-| CLR-024 | A | §12 | "All source code... available at github.com/SYNTRIAD/digit-pipelines" | METHODOLOGICAL | STRONG |
+| CLR-024 | A | §12 | "All source code... available at github.com/SYNTRIAD/digit-dynamics" | METHODOLOGICAL | STRONG |
 
 **Total claims extracted:** 24
 **Claims per section coverage:** 100% of substantive sections have claims extracted.
@@ -167,7 +167,7 @@ Bibliography (7 entries)
 | CLR-018 | "Sharp dichotomy" | Could be read as proven theorem | Empirically observed pattern across tested pipelines | MODERATE | STEELMAN — "sharp" describes the empirical observation, not a proven theorem |
 | CLR-022 | "GPU-exhaustive" | Implies GPU was actually used | Claims CUDA kernels on RTX 4000 Ada, but no GPU code in the repository | LARGE | FLAG_FOR_CLARIFICATION |
 | CLR-023 | "~5×10^6 iterations/second" | Specific hardware performance claim | Throughput on specific hardware; reproducibility doesn't require same hardware | MINIMAL | LITERAL |
-| CLR-024 | "available at github.com/SYNTRIAD/digit-pipelines" | Repository must exist and contain claimed artifacts | Repository existence is a commitment, not yet verifiable from within the paper | MINIMAL | LITERAL |
+| CLR-024 | "available at github.com/SYNTRIAD/digit-dynamics" | Repository must exist and contain claimed artifacts | Repository existence is a commitment, not yet verifiable from within the paper | MINIMAL | LITERAL |
 
 ### Summary
 - **Total claims steelmanned:** 7 major claims
