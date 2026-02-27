@@ -3,7 +3,6 @@
 **Systematische computationele exploratie van vastepunt-structuur in dynamische systemen van cijferoperaties.**
 
 [![Licentie: MIT](https://img.shields.io/badge/Licentie-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![arXiv](https://img.shields.io/badge/arXiv-XXXX.XXXXX-b31b1b.svg)](https://arxiv.org/abs/XXXX.XXXXX)
 
 Een computationele engine voor het verkennen, classificeren en verifiëren van algebraïsche structuur in samengestelde cijferoperatiesystemen. Geëvolueerd door 15 versies en 11 menselijk gestuurde onderzoekssessies, waarbij multi-agent AI-samenwerking gecombineerd werd met algebraïsch redeneren om 9 theorema's te identificeren en computationeel te verifiëren over willekeurige getalbases (b ≥ 3).
 
@@ -72,9 +71,9 @@ Zie [NL/README.md](NL/README.md) voor volledige documentatie.
 - **Paper B:** "Attractor Spectra and ε-Universality in Digit-Operation Dynamical Systems"  
   Experimentele wiskunde — nieuw ε-universaliteitskader, exhaustieve verificatie over 10⁷ inputs
 
-### Kandidaat OEIS-rij
-- **a(n) = 110×(10^(n+1) − 1)** voor n ≥ 1  
-  Vaste punten van de 1089-truc-afbeelding voor (n+4)-cijferige getallen
+### OEIS-rij (A393794, ingediend)
+- **a(n) = 110×(10^(n+1) − 1)** voor n ≥ 1 (equivalent: n_k = 110·(10^(k−3) − 1) voor k ≥ 5 cijfers, conform Paper A Theorema 4)  
+  Vaste punten van de 1089-truc-afbeelding T, één per cijferlengte
 
 ---
 

@@ -3,7 +3,6 @@
 **Systematic computational exploration of fixed-point structure in digit-operation dynamical systems.**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![arXiv](https://img.shields.io/badge/arXiv-XXXX.XXXXX-b31b1b.svg)](https://arxiv.org/abs/XXXX.XXXXX)
 
 A computational engine for exploring, classifying, and verifying algebraic structure in composed digit-operation systems. Evolved through 15 versions and 11 human-guided research sessions, combining multi-agent AI collaboration with algebraic reasoning to identify and computationally verify 9 theorems across arbitrary number bases (b ≥ 3).
 
@@ -72,9 +71,9 @@ See [EN/README.md](EN/README.md) for full documentation.
 - **Paper B:** "Attractor Spectra and ε-Universality in Digit-Operation Dynamical Systems"  
   Experimental mathematics — novel ε-universality framework, exhaustive verification over 10⁷ inputs
 
-### Candidate OEIS Sequence
-- **a(n) = 110×(10^(n+1) − 1)** for n ≥ 1  
-  Fixed points of the 1089-trick map for (n+4)-digit numbers
+### OEIS Sequence (A393794, submitted)
+- **a(n) = 110×(10^(n+1) − 1)** for n ≥ 1 (equivalently: n_k = 110·(10^(k−3) − 1) for k ≥ 5 digits, as in Paper A Theorem 4)  
+  Fixed points of the 1089-trick map T, one per digit count
 
 ---
 
