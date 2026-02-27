@@ -165,6 +165,30 @@ Modular, deterministic, submission-quality codebase:
 
 Key design decision: **Layer A (semantic) / Layer B (execution) separation** in M0. Pipeline specifications are pure data — inspectable, hashable, and independent of implementation.
 
+
+---
+
+## 🧪 Methodological Note
+
+This research employed Production-Validation (P↔V) modularization as an organizing heuristic. The v1→v15 evolution exhibits 6 measurable P→V cycles (see [PV Methodology](EN/docs/PV_METHODOLOGY.md)).
+
+**Important Disclaimers:**
+
+This does NOT constitute proof that P↔V is:
+- Mathematically necessary for digit-operation research
+- Universal across all discovery domains  
+- Superior to all alternative methodologies
+
+What it DOES demonstrate:
+- ✅ P↔V was **instrumentally useful** in this case
+- ✅ Systematic knowledge accumulation (83 facts)
+- ✅ Reusable proof modules (M0-M4)
+- ✅ Measurable meta-oscillation (6 cycles)
+
+**Efficiency Note:** Estimated ~4x speedup vs. random brute-force is NOT empirically validated. See [Limitations](EN/docs/LIMITATIONS.md) for full epistemic boundaries.
+
+**Positioning:** This is a strong case study of P↔V utility in one domain, not proof of universality.
+
 ---
 
 ## 📖 Citation
@@ -201,3 +225,4 @@ MIT License — see [LICENSE](EN/LICENSE) for details.
 ---
 
 *SYNTRIAD Research — February 2026*
+
