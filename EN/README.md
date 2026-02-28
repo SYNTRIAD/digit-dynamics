@@ -81,6 +81,12 @@ This created a feedback loop that drove the evolution from computation to compre
 │   ├── extended_research_session_v6.py ← v6: ML predictor
 │   └── ...                            ← Supporting scripts
 │
+│   NOTE: These scripts originated from the SYNTRIAD Symmetry Discovery
+│   System v6.0, a GPU-accelerated discovery engine with 19 operations,
+│   30-worker CPU parallelization, dynamic CUDA kernel generation, and
+│   ML-guided search. Operation 3 (truc_1089) directly computes the
+│   fixed points reported in OEIS A393794 and Paper A Theorem 4.
+│
 ├── scripts/                   ← Utility & verification scripts
 │   ├── gpu_attractor_verification.py  ← Exhaustive GPU verification
 │   ├── gpu_rigorous_analysis.py       ← State-space bounding
