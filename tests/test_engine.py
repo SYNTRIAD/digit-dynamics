@@ -659,8 +659,8 @@ class TestKnowledgeBase(unittest.TestCase):
         self.assertEqual(self.kb.facts["DS039"].proof_level, ProofLevel.PROVEN)
 
     def test_ds040_is_universal(self):
-        """DS040 should contain 'UNIVERSEEL' (corrected in R8)."""
-        self.assertIn("UNIVERSEEL", self.kb.facts["DS040"].statement)
+        """DS040 should contain 'UNIVERSAL' (corrected in R8)."""
+        self.assertIn("UNIVERSAL", self.kb.facts["DS040"].statement)
 
     def test_r9_facts_loaded(self):
         """R9 facts DS046-DS052 should all be loaded."""
