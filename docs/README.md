@@ -26,6 +26,8 @@ This project provides documentation in multiple languages.
 - [Discovery Engines Documentatie](NL/DISCOVERY_ENGINES_DOCUMENTATION.md) - Volledige engine documentatie
 - [Evolutie van Scripts tot Redeneren](NL/EVOLUTIE_VAN_SCRIPTS_TOT_REDENEREN.md) - Ontwikkelingsverhaal
 - [Formele Verificatie Rapport](NL/FORMAL_VERIFICATION_REPORT.md) - GPU-versnelde verificatie resultaten
+- [Beperkingen](NL/BEPERKINGEN.md) - Bekende beperkingen en toekomstig werk
+- [PV Methodologie](NL/PV_METHODOLOGIE.md) - P↔V methodologie beschrijving
 - [Wat We Ontdekten](NL/WAT_WE_ONTDEKTEN.md) - Kernontdekking: fixed-length projectie
 - [Observaties: Symbolic Dynamics Engine](NL/observaties_symbolic_dynamics_engine.md) - Engine observaties
 
