@@ -22,19 +22,20 @@ Een computationele engine voor het verkennen, classificeren en verifiëren van a
 
 **Het diepere punt:** De vaste punten zijn geen toevalligheden — ze worden afgedwongen door de algebraïsche structuur van positionele getalsystemen. Specifiek bepalen 10 ≡ 1 (mod 9) en 10 ≡ −1 (mod 11) welke getallen herhaalde cijferoperaties overleven.
 
-Lees meer: [Wat We Ontdekten](NL/docs/WAT_WE_ONTDEKTEN.md) | [Emergentie-essay](assets/emergence-mechanisms.md)
+Lees meer: [Wat We Ontdekten](docs/NL/WAT_WE_ONTDEKTEN.md) | [Emergentie-essay](assets/emergence-mechanisms.md)
 
 ---
 
 ## 📚 Repository Structuur
 
-Deze repository bevat zowel Engelse als Nederlandse versies:
+Enkele Engelse codebase met tweetalige documentatie:
 
-### **[→ English Version (EN/)](EN/)**
-Complete documentation, papers, code, and research artifacts in English.
+### **[→ Documentatie](docs/)**
+- **[English docs](docs/EN/)** - Volledige documentatie in het Engels
+- **[Nederlandse docs](docs/NL/)** - Volledige documentatie in het Nederlands
 
-### **[→ Nederlandse Versie (NL/)](NL/)**  
-Volledige documentatie, papers, code en onderzoeksartefacten in het Nederlands.
+### **[→ Code & Onderzoek](src/)**
+Alle code in het Engels voor internationale samenwerking.
 
 ### **[→ Assets](assets/)**
 Visualisaties en essays over universele patronen.
@@ -44,21 +45,19 @@ Visualisaties en essays over universele patronen.
 ## 🚀 Snel Starten
 
 ```bash
-# Nederlandse versie
-cd NL
 pip install -r requirements.txt
 
-# Draai de onderzoeksengine (v15, laatste versie)
-python engines/research_engine_v15.py
+# Draai de onderzoeksengine (laatste: v10, wat v15 is in evolutie)
+python engines/abductive_reasoning_engine_v10.py
 
 # Draai de reproduceerbaarheidspipeline (M0-M4 modules)
-python src/reproduce.py --db results.db --out repro_out --bundle
+python scripts/reproduce.py --db data/results.db --out repro_out --bundle
 
 # Draai alle tests
 pytest tests/ -v
 ```
 
-Zie [NL/README.md](NL/README.md) voor volledige documentatie.
+Zie [ARCHITECTURE.md](ARCHITECTURE.md) voor technische details.
 
 ---
 
@@ -91,7 +90,7 @@ De engine evolueerde door 15 versies over 11 feedbackrondes, gestuurd door een m
 
 De progressie: *observeren → classificeren → voorspellen → bewijzen*.
 
-Volledig verhaal: [Evolutie van Scripts naar Redeneren](NL/docs/EVOLUTIE_VAN_SCRIPTS_NAAR_REDENEREN.md)
+Volledig verhaal: [Evolutie van Scripts naar Redeneren](docs/NL/EVOLUTIE_VAN_SCRIPTS_TOT_REDENEREN.md)
 
 ---
 
@@ -184,18 +183,17 @@ Als je dit werk gebruikt, citeer dan:
 
 ## 📜 Licentie
 
-MIT-licentie — zie [LICENSE](NL/LICENSE) voor details.
+MIT-licentie — zie [LICENSE](LICENSE) voor details.
 
 ---
 
 ## 🔗 Links
 
-- **Papers:** [EN/papers/](EN/papers/)
-- **Documentatie:** [NL/docs/](NL/docs/)
-- **Broncode:** [NL/src/](NL/src/) (M0–M4 modules)
-- **Onderzoeksengines:** [NL/engines/](NL/engines/) (v1–v15)
-- **Reproduceerbaarheid:** [NL/src/reproduce.py](NL/src/reproduce.py)
-- **SYNTRIAD Research:** [syntriad.com](https://syntriad.com)
+- **Papers:** [papers/](papers/)
+- **Documentatie:** [docs/EN/](docs/EN/) | [docs/NL/](docs/NL/)
+- **Broncode:** [src/](src/) (M0–M4 modules)
+- **Onderzoeksengines:** [engines/](engines/) (v1–v15)
+- **Reproduceerbaarheid:** [scripts/reproduce.py](scripts/reproduce.py)
 
 ---
 

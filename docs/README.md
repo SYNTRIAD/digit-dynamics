@@ -11,7 +11,6 @@ This project provides documentation in multiple languages.
 
 ## English Documentation
 
-- [Architecture](EN/ARCHITECTURE.md) - System architecture and design
 - [Discovery Engines Documentation](EN/DISCOVERY_ENGINES_DOCUMENTATION.md) - Complete engine documentation
 - [Evolution from Scripts to Reasoning](EN/EVOLUTION_FROM_SCRIPTS_TO_REASONING.md) - Development narrative
 - [Formal Verification Report](EN/FORMAL_VERIFICATION_REPORT.md) - GPU-accelerated verification results
@@ -24,7 +23,6 @@ This project provides documentation in multiple languages.
 
 ## Nederlandse Documentatie
 
-- [Architectuur](NL/ARCHITECTURE.md) - Systeemarchitectuur en ontwerp
 - [Discovery Engines Documentatie](NL/DISCOVERY_ENGINES_DOCUMENTATION.md) - Volledige engine documentatie
 - [Evolutie van Scripts tot Redeneren](NL/EVOLUTIE_VAN_SCRIPTS_TOT_REDENEREN.md) - Ontwikkelingsverhaal
 - [Formele Verificatie Rapport](NL/FORMAL_VERIFICATION_REPORT.md) - GPU-versnelde verificatie resultaten
