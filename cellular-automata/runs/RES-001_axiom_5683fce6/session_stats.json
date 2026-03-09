@@ -1,0 +1,11 @@
+{
+  "experiments_run": 61,
+  "hypotheses_generated": 0,
+  "hypotheses_accepted": 0,
+  "hypotheses_rejected": 0,
+  "surprises_detected": 23,
+  "oeis_novelties": 0,
+  "domains_explored": ["ca"],
+  "claims_made": 9,
+  "v_vectors_count": 52
+}

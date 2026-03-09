@@ -1,0 +1,18 @@
+{
+  "session_id": "axiom_research_baf19226",
+  "final_hash": "b1b9ca29a0d048917eda81c22d9e4219b32ccb7a2d782b33c9d261de51ed7c7e",
+  "iterations": 136,
+  "timestamp": "2026-03-01T21:57:01.550612+00:00",
+  "signature": "ef1f5c359b05d86a942d3c229dfd97b5bcc8bf94dfc95de89a395be8da15b134",
+  "certificate_version": "1.0",
+  "research_question": "What algebraic growth patterns exist in CA fixed-point counts across rules and k-values?",
+  "domains": ["ca"],
+  "hypothesis": "CA fixed-point counts follow rule-dependent algebraic growth laws detectable as OEIS sequences",
+  "total_experiments": 135,
+  "total_claims": 9,
+  "genesis_hash": "fb6d89adb21495abe097aae27af23ed03b12b3faa16e3677c0ceb1ec662c11c1",
+  "started_at": "2026-03-01T21:56:59.105755+00:00",
+  "sealed_at": "2026-03-01T21:57:01.550632+00:00",
+  "axiom_version": "2.1.0",
+  "note": "Rerun of axiom_research_5683fce6 (RES-001) with OEIS checker fixes and continuous k-range 1..14"
+}

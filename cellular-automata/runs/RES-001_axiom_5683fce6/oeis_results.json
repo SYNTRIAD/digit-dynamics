@@ -1,0 +1,11 @@
+[
+  {"rule": 0,   "k_values": [3,4,5],                  "fp_counts": [1,1,1],                    "is_constant": true,  "oeis_match": null, "_note": "OEISChecker crashed in this session — matches identified manually post-hoc"},
+  {"rule": 4,   "k_values": [3,4,5,6,7,8,10,12],      "fp_counts": [4,7,11,18,29,47,123,322],  "is_constant": false, "oeis_match": null, "_manual": "A000204 (Lucas) — confirmed by pattern match after session"},
+  {"rule": 30,  "k_values": [3,4,5,6,7,8,10,12],      "fp_counts": [1,3,1,3,1,3,3,3],          "is_constant": false, "oeis_match": null},
+  {"rule": 54,  "k_values": [3,4,5],                  "fp_counts": [1,1,1],                    "is_constant": true,  "oeis_match": null},
+  {"rule": 76,  "k_values": [3,4,5,6,7,8,10,12],      "fp_counts": [7,11,21,39,71,131,443,1499],"is_constant": false, "oeis_match": null, "_manual": "A001644 (Tribonacci) — confirmed by pattern match after session"},
+  {"rule": 90,  "k_values": [3,4,5,6,7,8,10,12],      "fp_counts": [4,1,1,4,1,1,1,4],          "is_constant": false, "oeis_match": null},
+  {"rule": 110, "k_values": [3,4,5],                  "fp_counts": [1,1,1],                    "is_constant": true,  "oeis_match": null},
+  {"rule": 150, "k_values": [3,4,5,6,7,8,10,12],      "fp_counts": [2,4,2,4,2,4,4,4],          "is_constant": false, "oeis_match": null},
+  {"rule": 255, "k_values": [3,4,5],                  "fp_counts": [1,1,1],                    "is_constant": true,  "oeis_match": null}
+]

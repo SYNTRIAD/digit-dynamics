@@ -1,0 +1,62 @@
+{
+  "timestamp": "2026-02-23 21:15:32",
+  "system": "SYNTRIAD GPU Attractor Verification v1.0",
+  "results": [
+    {
+      "attractor": 99099,
+      "pipeline": "digit_pow_4 \u2192 truc_1089",
+      "total_tested": 9999000,
+      "converged_count": 9658952,
+      "convergence_rate": 96.5991799179918,
+      "avg_steps": 3.407760076007601,
+      "is_universal": false,
+      "other_endpoints_count": 1,
+      "top_other_endpoints": {
+        "0": 340048
+      }
+    },
+    {
+      "attractor": 26244,
+      "pipeline": "truc_1089 \u2192 digit_pow_4",
+      "total_tested": 9999000,
+      "converged_count": 9967731,
+      "convergence_rate": 99.6872787278728,
+      "avg_steps": 3.23923602360236,
+      "is_universal": true,
+      "other_endpoints_count": 1,
+      "top_other_endpoints": {
+        "0": 31269
+      }
+    },
+    {
+      "attractor": 4176,
+      "pipeline": "sort_diff \u2192 swap_ends",
+      "total_tested": 999000,
+      "converged_count": 8923,
+      "convergence_rate": 0.8931931931931932,
+      "avg_steps": 11.327591591591592,
+      "is_universal": false,
+      "other_endpoints_count": 20,
+      "top_other_endpoints": {
+        "620874": 318913,
+        "251748": 262016,
+        "260838": 117940,
+        "431766": 56180,
+        "240858": 53890
+      }
+    },
+    {
+      "attractor": 99962001,
+      "pipeline": "kaprekar \u2192 sort_asc \u2192 truc_1089 \u2192 kaprekar",
+      "total_tested": 999000,
+      "converged_count": 998718,
+      "convergence_rate": 99.97177177177177,
+      "avg_steps": 3.4816036036036038,
+      "is_universal": true,
+      "other_endpoints_count": 1,
+      "top_other_endpoints": {
+        "0": 282
+      }
+    }
+  ]
+}

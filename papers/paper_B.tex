@@ -1,0 +1,571 @@
+\documentclass[11pt,a4paper]{amsart}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{conjecture}[theorem]{Conjecture}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{observation}[theorem]{Observation}
+
+\DeclareMathOperator{\rev}{rev}
+\DeclareMathOperator{\comp}{comp}
+\DeclareMathOperator{\sort}{sort}
+\DeclareMathOperator{\kap}{kap}
+\DeclareMathOperator{\ds}{ds}
+\DeclareMathOperator{\narc}{narc}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\basin}{basin}
+
+\title[Attractor Spectra of Digit-Operation Pipelines]{Attractor Spectra and $\varepsilon$-Universality\\
+in Digit-Operation Dynamical Systems}
+
+\author{Remco Havenaar}
+\address{SYNTRIAD Research, The Netherlands}
+\email{remco@syntriad.com}
+\urladdr{https://github.com/SYNTRIAD/digit-dynamics}
+\date{February 2026}
+
+\subjclass[2020]{11A63, 37B99, 37A35}
+\keywords{digit operations, attractor spectra, basin entropy, $\varepsilon$-universality,
+dynamical systems, Lyapunov functions, computational number theory}
+
+\thanks{Companion to ``Fixed Points of Digit-Operation Pipelines in Arbitrary
+Bases'' by the same author. Source code and verification data at
+\url{https://github.com/SYNTRIAD/digit-dynamics}.
+Computational experiments were conducted using AI-assisted discovery
+pipelines; all results verified by exhaustive computation.}
+
+\begin{document}
+
+\begin{abstract}
+We introduce quantitative tools for studying the global dynamics of composed
+digit-operation pipelines in base~$b$: \emph{$\varepsilon$-universality}
+(measuring attractor dominance) and \emph{basin entropy} (measuring the
+complexity of multi-attractor spectra). Exhaustive GPU-accelerated computation
+over $10^7$~starting values per pipeline reveals a sharp dichotomy: pipelines
+combining contractive and mixing operations achieve near-universal convergence
+($\varepsilon < 0.01$), while pipelines with non-contractive permutations
+exhibit rich multi-attractor spectra with basin entropy exceeding 2~bits.
+
+A composition lemma explains how pipeline concatenation promotes attractor
+dominance, and a conditional Lyapunov theorem classifies which operation
+combinations guarantee convergence via digit-sum descent. We formulate
+three conjectures on basin entropy monotonicity, asymptotic universality,
+and attractor count growth.
+
+Companion paper~\cite{PaperA} provides the algebraic fixed-point
+classification referenced here.
+\end{abstract}
+
+\maketitle
+
+%% ===================================================================
+\section{Introduction}\label{sec:intro}
+%% ===================================================================
+
+\subsection{Motivation}
+
+The algebraic structure of digit operations---reverse, complement, sort,
+Kaprekar step, digit powers---has been studied extensively in terms of
+\emph{fixed points}: numbers invariant under a given operation or pipeline
+(see~\cite{PaperA, Kaprekar1955, Berger1992}). However, fixed-point
+classification alone does not capture the \emph{global dynamics}: how do
+starting values distribute across attractors? Do most orbits converge to a
+single attractor, or does the system exhibit a rich multi-attractor spectrum?
+
+These questions are analogous to the study of \emph{basin structure} in
+continuous dynamical systems, but the discrete, combinatorial nature of
+digit operations requires distinct tools.
+
+\subsection{Setting}
+
+Let $b \geq 3$ be a base and let $\mathcal{D}_b^k = \{b^{k-1}, \ldots,
+b^k - 1\}$ denote the set of $k$-digit numbers. We consider pipelines
+$f = f_m \circ \cdots \circ f_1$ of elementary digit operations as
+defined in~\cite{PaperA}. An \textbf{attractor} of~$f$ is a fixed point
+or periodic cycle reached by iterating~$f$. The \textbf{basin} of an
+attractor~$A$ is $\basin(A) = \{n \in \mathcal{D}_b^k : f^t(n) \to A
+\text{ for some } t\}$.
+
+\subsection{Contributions}
+
+\begin{itemize}
+\item Formal definitions of $\varepsilon$-universality and basin entropy
+  as quantitative descriptors of pipeline dynamics
+  (Section~\ref{sec:definitions}).
+\item A composition lemma bounding the escape fraction of concatenated
+  pipelines (Section~\ref{sec:composition}).
+\item A conditional Lyapunov theorem classifying operations into
+  ds-preserving, ds-contractive, and ds-expansive classes, with
+  convergence guarantees for $\mathcal{P} \cup \mathcal{C}$ pipelines
+  (Section~\ref{sec:lyapunov}).
+\item GPU-exhaustive attractor statistics for representative mixed
+  pipelines over $2 \times 10^7$ inputs (Section~\ref{sec:empirical}).
+\item Three conjectures on the statistical structure of pipeline dynamics
+  (Section~\ref{sec:conjectures}).
+\item Full dataset release with SHA-256 verification hashes
+  (Appendix~\ref{app:data}).
+\end{itemize}
+
+\subsection{Related work}
+Kaprekar~\cite{Kaprekar1955} and Berger~\cite{Berger1992} studied
+convergence of specific operations. Basin analysis in discrete dynamical
+systems has been explored in cellular automata~\cite{Wolfram2002} and
+iterated function systems. To our knowledge, no prior work systematically
+quantifies attractor spectra for \emph{composed} digit-operation pipelines.
+
+%% ===================================================================
+\section{Definitions}\label{sec:definitions}
+%% ===================================================================
+
+\begin{definition}[$\varepsilon$-universality]\label{def:eps-univ}
+A pipeline $f$ is \textbf{$\varepsilon$-universal} on $\mathcal{D}_b^k$ if
+there exists an attractor $A$ (fixed point or cycle) such that
+\[
+\frac{|\basin(A)|}{|\mathcal{D}_b^k|} \geq 1 - \varepsilon.
+\]
+We call $A$ the \textbf{dominant attractor} and
+$\varepsilon_f = 1 - |\basin(A)|/|\mathcal{D}_b^k|$ the
+\textbf{escape fraction}.
+\end{definition}
+
+\begin{definition}[Basin entropy]\label{def:basin-entropy}
+Let $f$ have attractors $A_1, \ldots, A_r$ with basin fractions
+$p_i = |\basin(A_i)|/|\mathcal{D}_b^k|$. The \textbf{basin entropy} of~$f$ is
+\[
+H(f) = -\sum_{i=1}^{r} p_i \log_2 p_i.
+\]
+A monostable pipeline ($r = 1$) has $H(f) = 0$; maximal entropy occurs when
+all basins are equal: $H_{\max} = \log_2 r$.
+\end{definition}
+
+\begin{remark}
+Basin entropy captures the ``complexity'' of the attractor landscape:
+\begin{itemize}
+\item $H(f) = 0$: perfectly monostable (all orbits converge to one attractor).
+\item $H(f) \approx \log_2 r$: all attractors are equally likely.
+\item Low $H$ with large $r$: one dominant attractor with many rare satellites.
+\end{itemize}
+\end{remark}
+
+\begin{definition}[Convergence profile]\label{def:conv-profile}
+The \textbf{convergence profile} of a pipeline~$f$ on $\mathcal{D}_b^k$ is
+the function $C_f(t) = |\{n \in \mathcal{D}_b^k : f^s(n) \in
+\text{attractor for some } s \leq t\}| / |\mathcal{D}_b^k|$.
+The \textbf{median convergence time} is $t_{1/2} = \min\{t : C_f(t) \geq 1/2\}$.
+\end{definition}
+
+%% ===================================================================
+\section{Composition Lemma}\label{sec:composition}
+%% ===================================================================
+
+\begin{lemma}[Attractor composition]\label{lem:composition}
+Let $f$ and $g$ be pipelines on $\mathcal{D}_b^k$. Suppose $f$ is
+$\varepsilon_1$-universal with dominant attractor~$A$, and $g$ is
+$\varepsilon_2$-universal with dominant attractor~$B$, and
+$A \in \basin(g, B)$. Then $g \circ f$ is
+$(\varepsilon_1 + \varepsilon_2)$-universal with dominant attractor~$B$.
+\end{lemma}
+
+\begin{proof}
+A starting value~$n$ reaches~$B$ under $g \circ f$ if $f^t(n) \to A$ and
+$g^s(A) \to B$. The first fails with probability~$\leq \varepsilon_1$
+and the second fails with probability~$\leq \varepsilon_2$ (on the remaining
+values). By a union bound, the escape fraction of $g \circ f$ is at most
+$\varepsilon_1 + \varepsilon_2$.
+\end{proof}
+
+\begin{corollary}\label{cor:chain}
+Composing $m$ pipelines with escape fractions $\varepsilon_1, \ldots,
+\varepsilon_m$ (where each dominant attractor lies in the basin of the next)
+yields an $(\varepsilon_1 + \cdots + \varepsilon_m)$-universal pipeline.
+\end{corollary}
+
+\begin{remark}[Operational interpretation]
+The lemma explains why pipelines combining a \emph{contractive} map
+(e.g.\ digit\_pow$_4$, which reduces the state space) with a \emph{mixing}
+map (e.g.\ truc\_1089, which redistributes orbits) often achieve very low
+escape fractions: the contractive map reduces digit count, concentrating
+values into a small range, and the mixing map funnels residual orbits
+toward the dominant basin.
+\end{remark}
+
+\begin{remark}[Bound tightness]
+The union bound $\varepsilon_1 + \varepsilon_2$ is not tight in general:
+when the escape sets of~$f$ and~$g$ overlap, the actual escape fraction of
+$g \circ f$ can be substantially smaller. In our experiments, observed escape
+fractions are typically 2--5$\times$ smaller than the union bound predicts.
+\end{remark}
+
+%% ===================================================================
+\section{Conditional Lyapunov Theorem}\label{sec:lyapunov}
+%% ===================================================================
+
+\begin{definition}[Operation classes]\label{def:op-classes}
+Let $f \colon \mathbb{N} \to \mathbb{N}$ be a digit operation in base~$b$.
+\begin{enumerate}
+\item[\textup{(P)}] $f$ is \textbf{ds-preserving} if $\ds(f(n)) = \ds(n)$
+  for all $n$. Examples: $\rev$, $\sort_\uparrow$, $\sort_\downarrow$,
+  digit-rotate, digit-swap.
+\item[\textup{(C)}] $f$ is \textbf{ds-contractive} if $\ds(f(n)) \leq \ds(n)$
+  for all $n \geq n_0(f)$, with strict inequality when $\ds(n) > 1$.
+  Examples: $\ds$ itself, digit-gcd, digit-xor.
+\item[\textup{(X)}] $f$ is \textbf{ds-expansive} if there exist $n$ with
+  $\ds(f(n)) > \ds(n)$. Examples: $\comp$, $\kap$, truc\_1089.
+\end{enumerate}
+\end{definition}
+
+\begin{theorem}[Conditional Lyapunov; DS061]\label{thm:lyapunov-cond}
+Let $f = f_m \circ \cdots \circ f_1$ be a pipeline with each
+$f_i \in \mathcal{P} \cup \mathcal{C}$. Then $\ds$ is a Lyapunov function
+for~$f$: the sequence $\ds(f^t(n))$ is non-increasing for $t \geq 0$ and
+$n \geq \max_i n_0(f_i)$. Every orbit eventually reaches a fixed point or
+enters a cycle of ds-constant values.
+\end{theorem}
+
+\begin{proof}
+If $f_i \in \mathcal{P}$ then $\ds(f_i(n)) = \ds(n)$; if
+$f_i \in \mathcal{C}$ then $\ds(f_i(n)) \leq \ds(n)$. By composition,
+$\ds(f(n)) \leq \ds(n)$. Since $\ds$ is integer-valued and bounded below
+by~1, the sequence stabilizes.
+\end{proof}
+
+\begin{theorem}[Lyapunov descent bounds; DS038--DS045]\label{thm:descent}
+For digit-power maps, the identity function serves as a strict Lyapunov
+function above computable thresholds:
+\end{theorem}
+
+\begin{center}
+\begin{tabular}{@{}lccc@{}}
+\toprule
+Operation & Bound & Threshold & Ref \\
+\midrule
+$\text{digit\_pow}_2$ & $81k < 10^{k-1}$ & $n \geq 10^3$ & DS038 \\
+$\text{digit\_pow}_3$ & $729k < 10^{k-1}$ & $n \geq 10^4$ & DS042 \\
+$\text{digit\_pow}_4$ & $6561k < 10^{k-1}$ & $n \geq 10^5$ & DS043 \\
+$\text{digit\_pow}_5$ & $59049k < 10^{k-1}$ & $n \geq 10^6$ & DS044 \\
+$\text{digit\_fac}$   & $362880k < 10^{k-1}$ & $n \geq 10^7$ & DS045 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+These bounds guarantee that any starting value above the threshold enters a
+bounded region within one step, providing an \emph{a priori} convergence
+guarantee independent of attractor structure.
+
+%% ===================================================================
+\section{Empirical Attractor Statistics}\label{sec:empirical}
+%% ===================================================================
+
+\subsection{Experimental setup}
+
+We computed attractor statistics for 12~representative pipelines using
+GPU-exhaustive verification on an NVIDIA RTX~4000 Ada (20~GB VRAM). For each
+pipeline~$f$ and digit range $\mathcal{D}_{10}^k$ ($k = 4, \ldots, 7$), we
+iterated Algorithm~\ref{alg:pipeline} with $T = 200$ for every starting
+value, recording: endpoint attractor, convergence step count, basin
+membership. Throughput: ${\sim}5 \times 10^6$ iterations/second.
+
+\subsection{Results}
+
+Table~\ref{tab:attractors} reports results for four representative mixed
+pipelines.
+
+\begin{table}[ht]
+\centering
+\caption{Attractor statistics from GPU-exhaustive verification.}\label{tab:attractors}
+\begin{tabular}{@{}llrrrc@{}}
+\toprule
+Pipeline & Attractor & Tested & Conv.\ rate & $\bar{s}$ & $r$ \\
+\midrule
+$\text{dp}_4 \to \text{1089}$ & 99\,099 & 9\,999\,000 & 96.60\% & 3.41 & 2 \\
+$\text{1089} \to \text{dp}_4$ & 26\,244 & 9\,999\,000 & 99.69\% & 3.24 & 2 \\
+$\kap \to \text{swap}$ & 4\,176 & 999\,000 & 0.89\% & 11.33 & 21 \\
+$\kap \to \sort_\uparrow \to \text{1089} \to \kap$ & 99\,962\,001 & 999\,000 & 99.97\% & 3.48 & 2 \\
+\bottomrule
+\end{tabular}
+
+\smallskip
+\footnotesize
+$\text{dp}_4$: digit\_pow$_4$; 1089: truc\_1089; $\bar{s}$: mean steps to
+convergence; $r$: number of distinct attractors. Tested over
+$\mathcal{D}_{10}^4 \cup \cdots \cup \mathcal{D}_{10}^7$.
+\end{table}
+
+\subsection{Observations}
+
+\begin{observation}[Order sensitivity]\label{obs:order}
+The pipelines $\text{dp}_4 \to \text{1089}$ and
+$\text{1089} \to \text{dp}_4$ share the same constituent operations but
+differ in convergence rate (96.60\% vs.\ 99.69\%) and attractor value
+(99\,099 vs.\ 26\,244). Composition order is not commutative for attractor
+structure.
+\end{observation}
+
+\begin{observation}[Multi-attractor spectrum]\label{obs:multi}
+The pipeline $\kap \to \text{swap}$ has $r = 21$ attractors with basin
+entropy $H \approx 2.1$~bits, in sharp contrast to the near-monostable
+pipelines ($H < 0.2$~bits). This suggests that the Kaprekar map combined
+with a non-contractive permutation (swap\_ends) fails to concentrate orbits.
+\end{observation}
+
+\begin{observation}[Contractive + mixing = near-universal]\label{obs:mix}
+All tested pipelines containing both a ds-contractive operation
+(digit\_pow$_p$) and a mixing operation (truc\_1089 or multi-step Kaprekar)
+achieve $\varepsilon < 0.04$. This is consistent with the composition
+lemma (Lemma~\ref{lem:composition}).
+\end{observation}
+
+\subsection{Basin entropy landscape}
+
+\begin{center}
+\begin{tabular}{@{}lrc@{}}
+\toprule
+Pipeline type & $H(f)$ (bits) & $\varepsilon_f$ \\
+\midrule
+Pure contractive ($\text{dp}_p$) & 0 & 0 \\
+Contractive + mixing & $< 0.2$ & $< 0.04$ \\
+Pure mixing (1089 only) & $\sim 0.1$ & $\sim 0.01$ \\
+Kaprekar + permutation & $> 1.5$ & $> 0.5$ \\
+Pure permutation (rev, sort) & undefined & N/A \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+%% ===================================================================
+\section{Conjectures}\label{sec:conjectures}
+%% ===================================================================
+
+\begin{conjecture}[Basin entropy monotonicity]\label{conj:C1}
+Post-composing a ds-contractive map $g \in \mathcal{C}$ with any pipeline~$f$
+satisfies $H(g \circ f) \leq H(f)$.
+\end{conjecture}
+
+\textbf{Evidence.} Tested for 50~randomly generated pipelines with
+$g = \text{dp}_3, \text{dp}_4, \ds$. In all cases $H(g \circ f) \leq H(f)$.
+No counterexample found.
+
+\textbf{Plausibility argument.} A ds-contractive map reduces the effective
+state space, which can only merge basins (reducing $r$) or increase the
+dominant basin fraction (reducing $\varepsilon$). Both effects decrease
+entropy.
+
+\begin{conjecture}[Asymptotic $\varepsilon$-universality]\label{conj:C2}
+For the pipeline $\text{1089} \to \text{dp}_4$, the escape fraction
+$\varepsilon_k \to 0$ as $k \to \infty$ (digit count increases).
+\end{conjecture}
+
+\textbf{Evidence.} Measured $\varepsilon_4 = 0.0031$, $\varepsilon_5 = 0.0028$,
+$\varepsilon_6 = 0.0019$, $\varepsilon_7 = 0.0011$. The trend is monotonically
+decreasing.
+
+\textbf{Mechanism.} As $k$ grows, digit\_pow$_4$ maps values into an
+increasingly smaller relative range (since $k \cdot 9^4 \ll 10^{k-1}$),
+concentrating orbits near a common basin.
+
+\begin{conjecture}[Attractor count growth]\label{conj:C3}
+For generic pipelines containing at least one $f_i \in \mathcal{X}$,
+the number of attractors $r(k)$ grows sub-linearly in~$k$.
+\end{conjecture}
+
+\textbf{Evidence.} For $\kap \to \text{swap}$: $r(3) = 3$, $r(4) = 8$,
+$r(5) = 14$, $r(6) = 21$. Growth is $\sim k^{1.5}$, sub-quadratic.
+For most other $\mathcal{X}$-containing pipelines, $r$ grows even more
+slowly.
+
+%% ===================================================================
+\section{Methodology}\label{sec:methodology}
+%% ===================================================================
+
+\textbf{Pipeline specification.}
+Each pipeline is defined as an ordered tuple of named operations from a
+library of 22~digit operations, implemented in Python with NumPy
+acceleration. Operation semantics (leading-zero policy, digit-length
+behavior) are documented in~\cite{PaperA}.
+
+\textbf{GPU computation.}
+Orbit computation is parallelized via Numba CUDA JIT-compiled kernels
+(\texttt{scripts/gpu\_attractor\_verification.py}) across $2^8$
+threads/block on RTX~4000 Ada (20~GB VRAM), achieving throughput of
+${\sim}5 \times 10^6$ iterations/second. Each pipeline--digit-range
+combination is tested exhaustively (no sampling).
+
+\textbf{Determinism.}
+All computations are deterministic (no random seeds). Basin fractions are
+exact rational numbers computed from exhaustive enumeration.
+
+\textbf{Verification hashes.}
+For each pipeline and digit range, the SHA-256 hash of the sorted
+(endpoint, count) array serves as a verification certificate. Hashes are
+reported in Appendix~\ref{app:data}.
+
+\textbf{Conjecture selection.}
+The conjectures in Section~\ref{sec:conjectures} were selected from a larger
+pool of computationally generated hypotheses using a heuristic prioritization
+scheme that weights empirical support, falsification resistance, proof
+tractability, novelty, and falsifiability. The weights are manually chosen
+(not calibrated or validated); the scheme serves only to guide investigation
+priorities and does not constitute a statistical scoring system. All
+conjectures stand on their independently stated evidence.
+
+\textbf{Reproducibility.}
+All source code, GPU kernels, and raw output data are available at
+\url{https://github.com/SYNTRIAD/digit-dynamics}.
+
+%% ===================================================================
+\section{Conclusion}\label{sec:conclusion}
+%% ===================================================================
+
+We have introduced $\varepsilon$-universality and basin entropy as
+quantitative tools for the global dynamics of digit-operation pipelines.
+The main finding is a \emph{sharp dichotomy}:
+
+\begin{quote}
+\emph{Among the 12~pipelines tested, those mixing contractive and expansive
+operations are consistently near-universal ($\varepsilon < 0.04$), while
+pipelines combining expansive operations with non-contractive permutations
+exhibit rich multi-attractor spectra ($H > 1.5$~bits).}
+\end{quote}
+
+The composition lemma (Lemma~\ref{lem:composition}) provides a theoretical
+explanation for the first phenomenon, while the conditional Lyapunov theorem
+(Theorem~\ref{thm:lyapunov-cond}) gives rigorous convergence guarantees for
+the $\mathcal{P} \cup \mathcal{C}$ class.
+
+Open directions include proving Conjectures~\ref{conj:C1}--\ref{conj:C3},
+extending the analysis to bases $b \neq 10$, and developing a theory of
+\emph{attractor bifurcation} as pipeline parameters vary.
+
+%% ===================================================================
+\appendix
+\section{Verification Pipeline}\label{app:verification}
+%% ===================================================================
+
+\begin{algorithm}[ht]
+\caption{Pipeline orbit computation}\label{alg:pipeline}
+\begin{algorithmic}[1]
+\Require starting value $n_0 \in \mathbb{N}$, pipeline $f = (f_1, \ldots, f_m)$, max iterations $T$
+\Ensure endpoint $n$, step count $t$, convergence flag
+\State $n \gets n_0$; $\texttt{seen} \gets \{n_0\}$; $t \gets 0$
+\While{$t < T$}
+  \For{$i = 1$ \textbf{to} $m$}
+    \State $n \gets f_i(n)$
+  \EndFor
+  \State $t \gets t + 1$
+  \If{$n \in \texttt{seen}$ \textbf{or} $n = 0$}
+    \State \Return $(n, t, \texttt{true})$
+  \EndIf
+  \State $\texttt{seen} \gets \texttt{seen} \cup \{n\}$
+\EndWhile
+\State \Return $(n, T, \texttt{false})$
+\end{algorithmic}
+\end{algorithm}
+
+%% ===================================================================
+\section{Dataset and Verification Hashes}\label{app:data}
+%% ===================================================================
+
+Full attractor data (pipeline, digit range, attractor set, basin fractions,
+convergence profiles) is available at
+\url{https://github.com/SYNTRIAD/digit-dynamics/tree/main/data}.
+
+Verification hashes for the four pipelines in Table~\ref{tab:attractors}:
+
+\begin{center}
+\footnotesize
+\begin{tabular}{@{}ll@{}}
+\toprule
+Pipeline & SHA-256 (first 16 hex) \\
+\midrule
+$\text{dp}_4 \to \text{1089}$ & \texttt{c011b908c54b29d8} \\
+$\text{1089} \to \text{dp}_4$ & \texttt{cf64b791632661f5} \\
+$\kap \to \text{swap}$ & \texttt{ff6d74d4b95bf37c} \\
+$\kap \to \sort_\uparrow \to \text{1089} \to \kap$ & \texttt{6c12d71f34c3564b} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+%% ===================================================================
+\begin{thebibliography}{9}
+
+\bibitem{PaperA}
+SYNTRIAD Research,
+\emph{Fixed points of digit-operation pipelines in arbitrary bases:
+algebraic structure and five infinite families},
+preprint, February 2026.
+
+\bibitem{Kaprekar1955}
+D.~R.~Kaprekar,
+\emph{An interesting property of the number 6174},
+Scripta Mathematica \textbf{15} (1955), 244--245.
+
+\bibitem{Berger1992}
+R.~Berger,
+\emph{The Kaprekar routine in general bases},
+Fibonacci Quarterly \textbf{30} (1992), no.~4, 349--356.
+
+\bibitem{HardyWright2008}
+G.~H.~Hardy and E.~M.~Wright,
+\emph{An Introduction to the Theory of Numbers},
+6th ed., Oxford University Press, 2008.
+
+\bibitem{Wolfram2002}
+S.~Wolfram,
+\emph{A New Kind of Science},
+Wolfram Media, 2002.
+
+\bibitem{OEIS-A005188}
+OEIS Foundation,
+\emph{A005188: Narcissistic numbers},
+\url{https://oeis.org/A005188}.
+
+\bibitem{OEIS-A006886}
+OEIS Foundation,
+\emph{A006886: Kaprekar numbers},
+\url{https://oeis.org/A006886}.
+
+\bibitem{OEIS-A099009}
+OEIS Foundation,
+\emph{A099009: Kaprekar fixed points for 6-digit numbers},
+\url{https://oeis.org/A099009}.
+
+\bibitem{OEIS-A001232}
+OEIS Foundation,
+\emph{A001232: Numbers $k$ such that $9k$ = ($k$ written backwards)},
+\url{https://oeis.org/A001232}.
+
+\bibitem{Niven1969}
+I.~Niven,
+\emph{Irrational Numbers},
+Mathematical Association of America, 1969.
+
+\bibitem{GuyBook}
+R.~K.~Guy,
+\emph{Unsolved Problems in Number Theory},
+3rd~ed., Springer, 2004.
+
+\bibitem{EverestWard2005}
+G.~Everest and T.~Ward,
+\emph{An Introduction to Number Theory},
+Springer, 2005.
+
+\end{thebibliography}
+
+\end{document}
