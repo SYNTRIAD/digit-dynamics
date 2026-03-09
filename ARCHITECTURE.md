@@ -342,8 +342,7 @@ python -m pytest tests/ -q
 
 ## Next Steps
 
-See [`docs/ROADMAP_SUBMISSION.md`](docs/ROADMAP_SUBMISSION.md) for submission preparation plan,
-and [`docs/roadmap.md`](docs/roadmap.md) for research trajectory history (R1–R11).
+This architecture document describes the complete M0–M4 reproducibility infrastructure and the v1–v15 research engine evolution. For paper submission preparation, see the papers in `papers/` directory.
 
 ---
 

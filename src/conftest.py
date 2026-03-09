@@ -16,7 +16,8 @@ import sys
 import pytest
 
 # Ensure subdirectories are importable (engines/ contains standalone discovery engines)
-_ROOT = os.path.dirname(os.path.abspath(__file__))
+# Go up one level from src/ to repository root
+_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 for _subdir in ("engines", "scripts"):
     _path = os.path.join(_ROOT, _subdir)
     if _path not in sys.path:
