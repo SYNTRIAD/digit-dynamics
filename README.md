@@ -47,7 +47,7 @@ Visualizations and essays exploring universal patterns.
 ```bash
 pip install -r requirements.txt
 
-# Run the research engine (v15, latest)
+# Run the research engine (latest: v10, which is v15 in evolution)
 python engines/abductive_reasoning_engine_v10.py
 
 # Run reproducibility pipeline (M0-M4 modules)
@@ -168,7 +168,7 @@ Key design decision: **Layer A (semantic) / Layer B (execution) separation** in 
 
 ## 🧪 Methodological Note
 
-This research employed Production-Validation (P↔V) modularization as an organizing heuristic. The v1→v15 evolution exhibits 6 measurable P→V cycles (see [PV Methodology](EN/docs/PV_METHODOLOGY.md)).
+This research employed Production-Validation (P↔V) modularization as an organizing heuristic. The v1→v15 evolution exhibits 6 measurable P→V cycles (see [PV Methodology](docs/EN/PV_METHODOLOGY.md)).
 
 **Important Disclaimers:**
 
@@ -183,7 +183,7 @@ What it DOES demonstrate:
 - ✅ Reusable proof modules (M0-M4)
 - ✅ Measurable meta-oscillation (6 cycles)
 
-**Efficiency Note:** Estimated ~4x speedup vs. random brute-force is NOT empirically validated. See [Limitations](EN/docs/LIMITATIONS.md) for full epistemic boundaries.
+**Efficiency Note:** Estimated ~4x speedup vs. random brute-force is NOT empirically validated. See [Limitations](docs/EN/LIMITATIONS.md) for full epistemic boundaries.
 
 **Positioning:** This is a strong case study of P↔V utility in one domain, not proof of universality.
 
@@ -207,18 +207,17 @@ If you use this work, please cite:
 
 ## 📜 License
 
-MIT License — see [LICENSE](EN/LICENSE) for details.
+MIT License — see [LICENSE](LICENSE) for details.
 
 ---
 
 ## 🔗 Links
 
-- **Papers:** [EN/papers/](EN/papers/)
-- **Documentation:** [EN/docs/](EN/docs/)
-- **Source Code:** [EN/src/](EN/src/) (M0–M4 modules)
-- **Research Engines:** [EN/engines/](EN/engines/) (v1–v15)
-- **Reproducibility:** [EN/src/reproduce.py](EN/src/reproduce.py)
-- **SYNTRIAD Research:** [syntriad.com](https://syntriad.com)
+- **Papers:** [papers/](papers/)
+- **Documentation:** [docs/EN/](docs/EN/) | [docs/NL/](docs/NL/)
+- **Source Code:** [src/](src/) (M0–M4 modules)
+- **Research Engines:** [engines/](engines/) (v1–v15)
+- **Reproducibility:** [scripts/reproduce.py](scripts/reproduce.py)
 
 ---
 
