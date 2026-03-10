@@ -45,3 +45,4 @@ desktop.ini
 
 # Archives
 *.zip
+test_repro_out/
