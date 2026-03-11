@@ -63,16 +63,21 @@ See [ARCHITECTURE.md](ARCHITECTURE.md) for technical details.
 
 ## 📄 Publications
 
-### Papers (arXiv pending)
+### Papers
 - **Paper A:** "Fixed Points of Digit-Operation Pipelines in Arbitrary Bases"  
-  Pure mathematics — 9 theorems, 5 infinite families, multi-base generalization
+  Pure mathematics — 9 theorems, 5 infinite families, multi-base generalization  
+  References OEIS A393794 (Fifth Family, Theorem 4)
   
 - **Paper B:** "Attractor Spectra and ε-Universality in Digit-Operation Dynamical Systems"  
-  Experimental mathematics — novel ε-universality framework, exhaustive verification over 10⁷ inputs
+  Experimental mathematics — novel ε-universality framework, exhaustive verification over 10⁷ inputs  
+  Companion to Paper A
 
-### OEIS Sequence (A393794, submitted)
-- **a(n) = 110×(10^(n+1) − 1)** for n ≥ 1 (equivalently: n_k = 110·(10^(k−3) − 1) for k ≥ 5 digits, as in Paper A Theorem 4)  
-  Fixed points of the 1089-trick map T, one per digit count
+**Status:** Ready for arXiv submission
+
+### OEIS Sequence A393794 ✅
+- **[A393794](https://oeis.org/A393794):** Fixed points of the 1089-trick map  
+  **a(n) = 110×(10^(n+1) − 1)** for n ≥ 1 (equivalently: n_k = 110·(10^(k−3) − 1) for k ≥ 5 digits)  
+  Accepted into the Online Encyclopedia of Integer Sequences (March 2026)
 
 ---
 
