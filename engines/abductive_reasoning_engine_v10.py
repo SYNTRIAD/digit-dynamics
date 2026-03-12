@@ -3,7 +3,7 @@
 SYNTRIAD Abductive Reasoning Engine v15.0  [R11-session]
 =======================================================
 
-From "analyze DEEPER squared" to "answer OPEN QUESTIONS — publication-ready."
+From "analyze DEEPER squared" to "answer OPEN QUESTIONS".
 
 New results compared to v14.0 (R11 session, 2026-02-24):
   PATH E — OPEN QUESTIONS:

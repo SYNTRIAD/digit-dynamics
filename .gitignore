@@ -46,3 +46,7 @@ desktop.ini
 # Archives
 *.zip
 test_repro_out/
+
+# External research domains (tracked in AXIOM repo)
+knot-theory/
+crystallography/
