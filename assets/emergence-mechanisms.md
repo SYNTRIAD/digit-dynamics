@@ -134,7 +134,7 @@ The digit-operation dynamical systems studied in this repository exhibit all fiv
 
 **Irreducibility**: The infinite families (symmetric, 1089×m, palindromes, sort-descending, fifth family) are emergent properties of the *composition* under projection — no single operation contains them.
 
-This is not metaphor. The same mathematical structure that creates consciousness from neurons creates fixed-point families from digit operations.
+The structural parallel is genuine: in both cases, composition under constraints produces properties absent at the component level. The analogy is suggestive, though the systems differ in complexity by many orders of magnitude.
 
 ---
 

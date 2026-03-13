@@ -212,7 +212,7 @@ Nieuwe modules in R6-R11:
 | **Y** | Cycle Taxonomy | Attractorcyclus-classificatie |
 | **Z** | Multi-Digit Kaprekar | 4+ digit Kaprekar-dynamica |
 
-Resultaat: 9 stellingen, 5 oneindige families van vaste punten, 83 KB-feiten, 117 tests.
+Resultaat: 9 stellingen, 5 oneindige families van vaste punten, 83 KB-feiten, 260 unittests (M0–M4) + 98 legacy tests.
 
 ---
 
@@ -309,7 +309,7 @@ Genereert bewijsschetsen voor bevestigde patronen. Leidt nieuwe stellingen af ui
 
 **Vraag:** "Waarom is dit *zo* en niet anders?"
 
-De meest geavanceerde laag. Zoekt naar de *beste verklaring* voor een observatie:
+De hoogste laag. Zoekt naar de *beste verklaring* voor een observatie:
 
 - **Causale ketens:** "Vaste punten zijn deelbaar door 3 *omdat* ..."
 - **Surprise-detectie:** "1089 verschijnt waar het niet hoort -- onderzoek!"

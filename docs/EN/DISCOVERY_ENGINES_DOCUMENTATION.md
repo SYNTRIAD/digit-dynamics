@@ -4,6 +4,12 @@
 > **Note:** This document describes the historical research prototypes (v1–v6).
 > These engines are preserved in `engines/` for reference only and are **not part
 > of the submission codebase** (M0–M4). See `README.md` for the current framework.
+>
+> **Historical snapshot:** Some data in this document (e.g., attractor dominance
+> percentages, operation counts) reflects the state at the time of writing (v6.0).
+> Later verification (FORMAL_VERIFICATION_REPORT) corrected several figures.
+> The current framework (v15.0 / M0–M4) contains 22 operations, 83 KB facts,
+> and 5 proven infinite families.
 
 **Version:** 2.0
 **Date:** 2026-02-23
@@ -496,7 +502,7 @@ All engines share the same base operations:
 | 1089 | truc_1089 | ~99% | Classical |
 | 99099 | digit_pow4 → truc_1089 | 99.97% | SYNTRIAD Discovery |
 | 26244 | truc_1089 → digit_pow4 | ~99% | SYNTRIAD Discovery |
-| 4176 | sort_diff → swap_ends | ~99% | SYNTRIAD Discovery |
+| 4176 | sort_diff → swap_ends | 0.89% | SYNTRIAD Discovery (4-digit specific, not universal — see FORMAL_VERIFICATION_REPORT) |
 | 98901 | digit_pow5 → sort_asc → truc_1089 → rotate_left | 99.80% | v5.0 Discovery |
 
 ---

@@ -113,7 +113,7 @@ Essay examining how simple rules create complex structure across five systems �
 |---------|-----------|-------|
 | Symmetric FP count | (b−2) · b^(k−1) symmetric fixed points among 2k-digit numbers | All bases b ≥ 3 |
 | Universal 1089-family | A_b = (b−1)(b+1)² generalizes 1089 to every base | All bases b ≥ 3 |
-| Four infinite families | Explicit counting formulas, pairwise disjoint | Base 10 |
+| Five infinite families | Explicit counting formulas, pairwise disjoint | Base 10 |
 | Fifth family (1089-trick) | n_k = 110 · (10^(k−3) − 1) for k ≥ 5 | Base 10 |
 | Kaprekar constants | K_b = (b/2)(b²−1) for even bases; 495 and 6174 algebraically | Bases b ≥ 4 |
 | Armstrong upper bound | k_max(b) ≤ ⌊b · log(b) / log(b − 1)⌋ + 1 | All bases b ≥ 3 |

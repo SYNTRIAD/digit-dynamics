@@ -61,18 +61,19 @@ Zie [ARCHITECTURE.md](ARCHITECTURE.md) voor technische details.
 
 ---
 
-## 📄 Publicaties
+## 📄 Preprints & OEIS
 
-### Papers (arXiv in voorbereiding)
-- **Paper A:** "Fixed Points of Digit-Operation Pipelines in Arbitrary Bases"  
-  Zuivere wiskunde — 9 theorema's, 5 oneindige families, multi-base generalisatie
-  
-- **Paper B:** "Attractor Spectra and ε-Universality in Digit-Operation Dynamical Systems"  
-  Experimentele wiskunde — nieuw ε-universaliteitskader, exhaustieve verificatie over 10⁷ inputs
+### Preprints (ongepubliceerd)
+- **Paper A:** "Fixed Points of Digit-Operation Pipelines in Arbitrary Bases"
+  9 theorema's, 5 oneindige families, multi-base generalisatie
 
-### OEIS-rij (A393794, ingediend)
-- **a(n) = 110×(10^(n+1) − 1)** voor n ≥ 1 (equivalent: n_k = 110·(10^(k−3) − 1) voor k ≥ 5 cijfers, conform Paper A Theorema 4)  
-  Vaste punten van de 1089-truc-afbeelding T, één per cijferlengte
+- **Paper B:** "Attractor Spectra and ε-Universality in Digit-Operation Dynamical Systems"
+  Complementair aan Paper A — experimentele verificatie over 10⁷ inputs
+
+### OEIS
+- **[A393794](https://oeis.org/A393794):** Vaste punten van de 1089-truc-afbeelding
+  a(n) = 110×(10^(n+1) − 1) voor n ≥ 1
+  Geaccepteerd maart 2026
 
 ---
 
@@ -112,7 +113,7 @@ Essay dat onderzoekt hoe eenvoudige regels complexe structuur creëren over vijf
 |----------|----------|-------|
 | Symmetrische VP-telling | (b−2) · b^(k−1) symmetrische vaste punten onder 2k-cijferige getallen | Alle bases b ≥ 3 |
 | Universele 1089-familie | A_b = (b−1)(b+1)² generaliseert 1089 naar elke base | Alle bases b ≥ 3 |
-| Vier oneindige families | Expliciete telformules, paarsgewijs disjunct | Base 10 |
+| Vijf oneindige families | Expliciete telformules, paarsgewijs disjunct | Base 10 |
 | Vijfde familie (1089-truc) | n_k = 110 · (10^(k−3) − 1) voor k ≥ 5 | Base 10 |
 | Kaprekar-constanten | K_b = (b/2)(b²−1) voor even bases; 495 en 6174 algebraïsch | Bases b ≥ 4 |
 | Armstrong-bovengrens | k_max(b) ≤ ⌊b · log(b) / log(b − 1)⌋ + 1 | Alle bases b ≥ 3 |
@@ -162,6 +163,29 @@ Modulaire, deterministische, publicatiekwaliteit codebase:
 | **M4** (appendix_emitter.py) | LaTeX-appendixgeneratie, manifest, reproduceerbaarheidsbundel | ~1.170 |
 
 Kernbeslissing in het ontwerp: **Laag A (semantisch) / Laag B (executie) scheiding** in M0. Pipelinespecificaties zijn zuivere data — inspecteerbaar, hashbaar en onafhankelijk van implementatie.
+
+---
+
+## 🧪 Methodologische Noot
+
+Dit onderzoek gebruikte Productie-Validatie (P↔V) modularisatie als organisatorische heuristiek. De v1→v15 evolutie vertoont 6 meetbare P→V cycli (zie [PV Methodologie](docs/NL/PV_METHODOLOGIE.md)).
+
+**Belangrijke disclaimers:**
+
+Dit vormt GEEN bewijs dat P↔V:
+- Wiskundig noodzakelijk is voor cijferoperatie-onderzoek
+- Universeel is over alle ontdekkingsdomeinen
+- Superieur is aan alle alternatieve methodologieën
+
+Wat het WEL aantoont:
+- P↔V was **instrumenteel nuttig** in dit geval
+- Systematische kennisaccumulatie (83 feiten)
+- Herbruikbare bewijsmodules (M0-M4)
+- Meetbare meta-oscillatie (6 cycli)
+
+**Efficiëntienoot:** De geschatte ~4x versnelling t.o.v. willekeurige brute-force is NIET empirisch gevalideerd. Zie [Beperkingen](docs/NL/BEPERKINGEN.md) voor volledige epistemische grenzen.
+
+**Positionering:** Dit is een sterke casestudie van P↔V-nut in één domein, geen bewijs van universaliteit.
 
 ---
 

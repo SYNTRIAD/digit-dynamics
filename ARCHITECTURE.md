@@ -10,19 +10,19 @@ A computational research framework that enumerates digit-operation pipelines in 
 
 | Metric | Value |
 |--------|-------|
-| Knowledge Base | 79 facts (65 proven) |
+| Knowledge Base | 83 facts (DS001–DS083) |
 | Invariants per fixed point | 16 |
-| Analysis phases | 19 |
+| Analysis phases | 18 |
 | Digit operations | 22 |
-| Modules | 30 (A–Z + R11) |
+| Modules | 30 (A–Z plus 4 additional) |
 | Complement-closed FPs found | ~90 |
-| Infinite FP families | **4 proven** (symmetric, 1089×m, sort_desc, palindromes) |
+| Infinite FP families | **5 proven** (symmetric, 1089×m, sort_desc, palindromes, 1089-trick) |
 | Formal proofs verified | **12/12** |
 | Armstrong numbers catalogued | k=1..7, k_max(10)=60 proven |
 | Kaprekar constants | 3d (495), 4d (6174), 6d (549945, 631764) |
 | digit_sum Lyapunov | Conditionally proven (DS061) |
-| Multi-base support | b ∈ {5..16} |
-| Unit tests | 117/117 passing |
+| Multi-base support | b ∈ {3..16} |
+| Unit tests | 260 (M0–M4) + 98 legacy (v4–v15) |
 | Runtime (200 pipelines) | ~58 seconds |
 
 ### The Central Discovery
@@ -35,12 +35,13 @@ b ≡ -1 (mod b+1)  → alt_digit_sum ≡ n (mod b+1) → factor (b+1) enrichmen
 Base 10: (3 × 11)² = 1089 → universal fixed point at resonance intersection
 ```
 
-Four proven infinite families of digit-operation fixed points:
+Five proven infinite families of digit-operation fixed points:
 
 1. **Symmetric family**: `d_i + d_{2k+1-i} = b-1` — exactly **(b-2)×b^(k-1)** FPs (**DS034**)
 2. **1089×m family**: `(b-1)(b+1)²×m` for m=1..b-1 — **UNIVERSAL** (**DS040**)
 3. **sort_desc family**: non-increasing digits — **C(k+9,k)-1** FPs (**DS062**)
 4. **Palindrome family**: reverse-invariant — **9×10^(floor((k-1)/2))** FPs (**DS063**)
+5. **1089-trick family**: n_k = 110×(10^(k−3) − 1) for k ≥ 5 — one FP per digit length (**A393794**)
 
 ---
 
@@ -60,7 +61,7 @@ v11.0  Formal Proof Engine              Computational proof verification, 5/5 fo
 v12.0  Complete Proof Engine             12/12 proofs, DS040 corrected, Lyapunov bounds, odd-length
 v13.0  Broadened Discovery Engine        Armstrong/narcissistic, Kaprekar odd-base, orbit analysis
 v14.0  Deep Analysis Engine              Universal Lyapunov, repunits, cycle taxonomy, multi-digit Kaprekar
-v15.0  Open Questions Engine             4 FP families, Kaprekar d>3, Lyapunov proof, Armstrong bounds
+v15.0  Open Questions Engine             5 FP families, Kaprekar d>3, Lyapunov proof, Armstrong bounds
 ```
 
 The current engine (**v15.0 / R11**) integrates 11 rounds of analysis (R1–R11: DeepSeek R1-R5 + Manus R6 + Cascade R7-R11).
@@ -71,7 +72,7 @@ The current engine (**v15.0 / R11**) integrates 11 rounds of analysis (R1–R11:
 
 ```
 LAYER 1: Empirical Dynamics          Attractor detection, sampling, orbit analysis
-LAYER 2: Operator Algebra + KB       Symbolic prediction, 71 facts (DS011–DS060)
+LAYER 2: Operator Algebra + KB       Symbolic prediction, 83 facts (DS001–DS083)
 LAYER 3: Symbolic Reasoning           FP solver, meta-theorems, proof sketches
 LAYER 4: Deductive Theory             Induced theorems, theory graph
 LAYER 5: Heuristic Pattern Detection   Pattern chains, anomaly detection, follow-up generation
@@ -87,7 +88,7 @@ META:    Homeostatic self-regulation
 | B | OperatorAlgebra | v7.0 | Symbolic convergence prediction before sampling |
 | C | FixedPointSolver | v7.0 | Constraint-based FP search + 16-invariant characterization |
 | D | PipelineExplorer | v7.0 | Stochastic pipeline generation with adaptive scoring |
-| E | KnowledgeBase | v9.0 | 51 proven/empirical facts, gap closure loop |
+| E | KnowledgeBase | v9.0 | 83 facts (DS001–DS083), gap closure loop |
 | F | CausalChainConstructor | v9.0 | Mechanistic explanations from statistical patterns |
 | G | SurpriseDetector | v9.0 | Anomaly detection, follow-up question generation |
 | H | GapClosureLoop | v9.0 | Proven facts automatically close proof gaps |
@@ -110,7 +111,7 @@ META:    Homeostatic self-regulation
 | **Y** | **CycleTaxonomy** | **R10** | Full attractor cycle classification per pipeline |
 | **Z** | **MultiDigitKaprekar** | **R10** | Kaprekar dynamics for 4, 5, 6-digit numbers |
 
-### 16 Analysis Phases
+### 18 Analysis Phases
 
 | Phase | Name | Session |
 |-------|------|---------|
@@ -135,7 +136,7 @@ META:    Homeostatic self-regulation
 
 ---
 
-## Knowledge Base (71 facts: DS011–DS060)
+## Knowledge Base (83 facts: DS001–DS083)
 
 ### Core theorems (DS011–DS023, R1–R5)
 
@@ -246,15 +247,15 @@ META:    Homeostatic self-regulation
 │   ├── run_experiments.py   # Recreate results.db from scratch (C1 audit fix)
 │   └── reproduce.py         # One-command artifact generation + verification
 │
-├── tests/                   # 377+ pytest tests (M0–M4)
+├── tests/                   # 260 pytest tests (M0–M4)
 │   ├── test_m0.py
 │   ├── test_m1.py
 │   ├── test_m2.py
 │   ├── test_m3.py
 │   ├── test_m4.py
-│   └── test_engine.py       # Legacy engine tests (98 unittest tests)
+│   └── test_engine.py       # Legacy engine tests (98 tests)
 │
-├── papers/                  # Manuscripts
+├── papers/                  # Preprints (unpublished)
 │   ├── paper_A.tex          # Paper A: Algebraic structure + 5 infinite families
 │   ├── paper_B.tex          # Paper B: Attractor spectra + epsilon-universality
 │   ├── paper.tex            # DEPRECATED combined version
@@ -322,6 +323,7 @@ python -m pytest tests/ -q
 | **R8** | Cascade | DS041–DS045, DS039/040 upgraded, 12/12 proofs, DS040 corrected, 57 tests |
 | **R9** | Cascade | Path B: Modules S–U, DS046–DS052, 22 ops, Armstrong, odd-base Kaprekar, orbits, 76 tests |
 | **R10** | Cascade | Path D: Modules V–Z, DS053–DS060, Lyapunov, repunits, cycle taxonomy, multi-digit Kaprekar, 98 tests |
+| **R11** | Cascade | M0–M4 refactoring, reproducibility infrastructure, 260 unit tests, publication preparation |
 
 ### Iterative Corrections
 
@@ -348,4 +350,4 @@ This architecture document describes the complete M0–M4 reproducibility infras
 
 ## License
 
-Part of the SYNTRIAD research portfolio. Internal use.
+MIT License — see [LICENSE](LICENSE) for details.

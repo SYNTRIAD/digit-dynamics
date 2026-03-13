@@ -16,7 +16,7 @@ Als je een bewerking toepast en hetzelfde getal terugkrijgt, heb je een *vast pu
 
 Ons project generaliseert dit idee. We bestuderen 22 verschillende cijferbewerkingen, in willekeurige combinaties, in elk talstelsel (niet alleen basis 10). We hebben daar inmiddels negen stellingen over bewezen, vijf oneindige families van vaste punten geclassificeerd, en meer dan 20 miljoen startwaarden doorgerekend.
 
-Maar toen ontdekten we iets dat al onze aannames veranderde.
+Maar toen vonden we iets dat het probleem herkadreerde.
 
 ---
 

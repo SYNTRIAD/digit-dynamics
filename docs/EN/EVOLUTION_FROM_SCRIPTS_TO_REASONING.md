@@ -212,7 +212,7 @@ New modules in R6-R11:
 | **Y** | Cycle Taxonomy | Attractor cycle classification |
 | **Z** | Multi-Digit Kaprekar | 4+ digit Kaprekar dynamics |
 
-Result: 9 theorems, 5 infinite families of fixed points, 83 KB facts, 117 tests.
+Result: 9 theorems, 5 infinite families of fixed points, 83 KB facts, 260 unit tests (M0–M4) + 98 legacy tests.
 
 ---
 
@@ -309,7 +309,7 @@ Generates proof sketches for confirmed patterns. Derives new theorems from combi
 
 **Question:** "Why is this *so* and not otherwise?"
 
-The most advanced layer. Searches for the *best explanation* for an observation:
+The highest-level layer. Searches for the *best explanation* for an observation:
 
 - **Causal chains:** "Fixed points are divisible by 3 *because* ..."
 - **Surprise detection:** "1089 appears where it shouldn't — investigate!"

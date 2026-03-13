@@ -14,9 +14,9 @@ The central question is: **which numbers remain unchanged?**
 
 If you apply an operation and get the same number back, you have a *fixed point*. The most famous example is 6174 — the Kaprekar constant. Take any four-digit number, sort the digits descending, subtract the ascending-sorted number from it, and repeat. After at most seven steps, you always arrive at 6174.
 
-Our project radically generalizes this idea. We study 22 different digit operations, in arbitrary combinations, in any number system (not just base 10). We have now proven nine theorems about this, classified five infinite families of fixed points, and computed more than 20 million starting values.
+Our project generalizes this idea. We study 22 different digit operations, in arbitrary combinations, in any number system (not just base 10). We have now proven nine theorems about this, classified five infinite families of fixed points, and computed more than 20 million starting values.
 
-But then we discovered something that changed all our assumptions.
+But then we found something that reframed the problem.
 
 ---
 
