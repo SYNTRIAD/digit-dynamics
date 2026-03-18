@@ -71,9 +71,17 @@ Zie [ARCHITECTURE.md](ARCHITECTURE.md) voor technische details.
   Complementair aan Paper A — experimentele verificatie over 10⁷ inputs
 
 ### OEIS
-- **[A393794](https://oeis.org/A393794):** Vaste punten van de 1089-truc-afbeelding
-  a(n) = 110×(10^(n+1) − 1) voor n ≥ 1
-  Geaccepteerd maart 2026
+
+| Entry | Beschrijving | Type | Status |
+|-------|-------------|------|--------|
+| **[A393794](https://oeis.org/A393794)** | Vaste punten van de 1089-truc-afbeelding | nieuwe reeks | ✅ Geaccepteerd 27 feb 2026 |
+| **[A203648](https://oeis.org/A203648)** | Fox n-kleuringen van trefoilknoop (d=3) | annotatie | ✅ Geaccepteerd 18 mrt 2026 |
+| **[A394222](https://oeis.org/A394222)** | Fox n-kleuringen, 2-brug-knopen det=5 | nieuwe reeks | ✅ Geaccepteerd 18 mrt 2026 |
+| **[A394223](https://oeis.org/A394223)** | Fox n-kleuringen, 2-brug-knopen det=7 | nieuwe reeks | ✅ Geaccepteerd 18 mrt 2026 |
+
+Alle vier entries zijn voortgekomen uit de AXIOM vaste-punten-census engine,
+die direct is gegroeid uit de P_k projectie-ontdekking die hier gedocumenteerd is.
+Zie ook: [cellular-automata/oeis/](cellular-automata/oeis/) en [knot-theory/oeis/](knot-theory/oeis/) voor de indieningsartefacten.
 
 ---
 
@@ -221,4 +229,4 @@ MIT-licentie — zie [LICENSE](LICENSE) voor details.
 
 ---
 
-*SYNTRIAD Research — februari 2026*
+*SYNTRIAD Research — februari 2026 · Bijgewerkt 18 maart 2026 (4 OEIS-entries geaccepteerd)*
