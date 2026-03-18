@@ -148,7 +148,7 @@ This project used a tripartite collaboration model:
 | **Implementation & Scaling** | Manus (R6) | Bulk implementation, multi-base engine, protocol execution |
 | **Formal Proofs & Architecture** | Claude/Cascade (R7–R11) | Proof verification, M0–M4 architecture, publication preparation |
 
-The human researcher directed every research phase, identified the algebraic structures, and made the conceptual leaps connecting digit operations to modular arithmetic. The AI systems executed, verified, and formalized.
+The research emerged from iterative collaboration: the human researcher provided direction, framing, and critical intervention at key moments — asking the right questions, recognizing structural patterns, and steering toward productive hypotheses. The AI systems contributed mathematical reasoning, implementation, verification, and formalization, while also surfacing unexpected results that shaped the research direction. Neither fully directed the other.
 
 ---
 

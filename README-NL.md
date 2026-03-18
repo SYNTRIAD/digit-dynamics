@@ -148,7 +148,7 @@ Dit project gebruikte een tripartite samenwerkingsmodel:
 | **Implementatie & Schaling** | Manus (R6) | Bulk-implementatie, multi-base engine, protocoluitvoering |
 | **Formele Bewijzen & Architectuur** | Claude/Cascade (R7–R11) | Bewijsverificatie, M0–M4 architectuur, publicatievoorbereiding |
 
-De menselijke onderzoeker stuurde elke onderzoeksfase, identificeerde de algebraïsche structuren, en maakte de conceptuele sprongen die cijferoperaties verbonden met modulaire aritmetiek. De AI-systemen voerden uit, verifieerden en formaliseerden.
+Het onderzoek ontstond uit iteratieve samenwerking: de menselijke onderzoeker bracht richting, kaderstelling en kritische interventie op sleutelmomenten — door de juiste vragen te stellen, structurele patronen te herkennen en bij te sturen naar vruchtbare hypotheses. De AI-systemen droegen wiskundig redeneren, implementatie, verificatie en formalisering bij, en brachten ook onverwachte resultaten aan het licht die de onderzoeksrichting mede bepaalden. Geen van beide stuurde volledig.
 
 ---
 
