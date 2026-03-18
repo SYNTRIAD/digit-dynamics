@@ -71,9 +71,17 @@ See [ARCHITECTURE.md](ARCHITECTURE.md) for technical details.
   Companion to Paper A — experimental verification over 10⁷ inputs
 
 ### OEIS
-- **[A393794](https://oeis.org/A393794):** Fixed points of the 1089-trick map  
-  a(n) = 110×(10^(n+1) − 1) for n ≥ 1  
-  Accepted March 2026
+
+| Entry | Description | Type | Status |
+|-------|-------------|------|--------|
+| **[A393794](https://oeis.org/A393794)** | Fixed points of the 1089-trick map | new sequence | ✅ Approved Feb 27 2026 |
+| **[A203648](https://oeis.org/A203648)** | Fox n-colorings of trefoil knot (d=3) | annotation | ✅ Approved Mar 18 2026 |
+| **[A394222](https://oeis.org/A394222)** | Fox n-colorings, 2-bridge knots det=5 | new sequence | ✅ Approved Mar 18 2026 |
+| **[A394223](https://oeis.org/A394223)** | Fox n-colorings, 2-bridge knots det=7 | new sequence | ✅ Approved Mar 18 2026 |
+
+All four entries were produced by the AXIOM fixed-point census engine,
+which grew directly from the P_k projection discovery documented here.
+See also: [cellular-automata/oeis/](cellular-automata/oeis/) and [knot-theory/oeis/](knot-theory/oeis/) for submission artifacts.
 
 ---
 
@@ -222,5 +230,5 @@ MIT License — see [LICENSE](LICENSE) for details.
 
 ---
 
-*SYNTRIAD Research — February 2026*
+*SYNTRIAD Research — February 2026 · Last updated March 18 2026 (4 OEIS entries approved)*
 
