@@ -1,0 +1,14 @@
+{
+  "algorithm": "HMAC-SHA256(genesis_hash, chain_summary)",
+  "created": "2026-03-04T02:57:27.318761",
+  "final_hash": "c78aabfe8ab87a8bde132998e1ed9fa0663f45ed7612338a1ff1e19109dc133e",
+  "genesis_hash": "922518b2ffa08dca6f3a394fb794a76d1071bac1ed7735823af43485a7afc8b1",
+  "hmac_sha256": "ef95750c2748d4507a36ab78687d2a297e5fd8877fbb30018a22dadce7c76513",
+  "num_entries": 3,
+  "sealed": "2026-03-04T03:20:55.701629",
+  "self_verification": {
+    "details": "HMAC verification passed",
+    "valid": true
+  },
+  "session_id": "validation-2026-03-04_025727"
+}

@@ -1,0 +1,119 @@
+{
+  "generated": "2026-02-25T01:16:43.582686",
+  "op_registry_hash": "db3a7d129dc4025b",
+  "results": [
+    {
+      "basin_entropy": "0.329886050270",
+      "convergence_rate": "0.939383828273",
+      "domain_hash": "b57868e30d00cf66",
+      "num_inputs": 8991,
+      "pipeline": "digit_pow4 |> truc_1089",
+      "result_hash": "c011b908c54b29d8"
+    },
+    {
+      "basin_entropy": "0.316386080242",
+      "convergence_rate": "0.942760942761",
+      "domain_hash": "f345c08f2f407d0a",
+      "num_inputs": 891,
+      "pipeline": "kaprekar_step",
+      "result_hash": "57415d2aca454a4a"
+    },
+    {
+      "basin_entropy": "0.064165715333",
+      "convergence_rate": "0.992436881326",
+      "domain_hash": "b57868e30d00cf66",
+      "num_inputs": 8991,
+      "pipeline": "kaprekar_step",
+      "result_hash": "e758bdedc3f55d10"
+    },
+    {
+      "basin_entropy": "2.744031245983",
+      "convergence_rate": "0.308075251970",
+      "domain_hash": "6b9d6cd595b7131b",
+      "num_inputs": 89991,
+      "pipeline": "kaprekar_step",
+      "result_hash": "488c49efd3f675f4"
+    },
+    {
+      "basin_entropy": "2.431349660762",
+      "convergence_rate": "0.354351321291",
+      "domain_hash": "2656fd5ea4ea533e",
+      "num_inputs": 899991,
+      "pipeline": "kaprekar_step",
+      "result_hash": "6507a0ac820d0880"
+    },
+    {
+      "basin_entropy": "1.729675462840",
+      "convergence_rate": "0.671459560348",
+      "domain_hash": "92f37cf136da0b5d",
+      "num_inputs": 8999991,
+      "pipeline": "kaprekar_step",
+      "result_hash": "a0b2e1d8c3a2a720"
+    },
+    {
+      "basin_entropy": "0.064165715333",
+      "convergence_rate": "0.992436881326",
+      "domain_hash": "b57868e30d00cf66",
+      "num_inputs": 8991,
+      "pipeline": "kaprekar_step |> sort_asc |> truc_1089 |> kaprekar_step",
+      "result_hash": "6c12d71f34c3564b"
+    },
+    {
+      "basin_entropy": "0.064165715333",
+      "convergence_rate": "0.992436881326",
+      "domain_hash": "b57868e30d00cf66",
+      "num_inputs": 8991,
+      "pipeline": "kaprekar_step |> swap_ends",
+      "result_hash": "ff6d74d4b95bf37c"
+    },
+    {
+      "basin_entropy": "0.468995593589",
+      "convergence_rate": "0.900000000000",
+      "domain_hash": "47c46532fa5ef2f4",
+      "num_inputs": 900,
+      "pipeline": "truc_1089",
+      "result_hash": "83733632e65020ce"
+    },
+    {
+      "basin_entropy": "1.356682396408",
+      "convergence_rate": "0.481555555556",
+      "domain_hash": "cc99da5c9f8e832b",
+      "num_inputs": 9000,
+      "pipeline": "truc_1089",
+      "result_hash": "e37bf75436ba5bac"
+    },
+    {
+      "basin_entropy": "1.690703471231",
+      "convergence_rate": "0.427666666667",
+      "domain_hash": "fe3c4801e197ed09",
+      "num_inputs": 90000,
+      "pipeline": "truc_1089",
+      "result_hash": "2b714d3da22ffe1b"
+    },
+    {
+      "basin_entropy": "2.438784561064",
+      "convergence_rate": "0.230721111111",
+      "domain_hash": "f5a55310c86a8a6e",
+      "num_inputs": 900000,
+      "pipeline": "truc_1089",
+      "result_hash": "edddd7fbe99723d3"
+    },
+    {
+      "basin_entropy": "1.910800093110",
+      "convergence_rate": "0.418381111111",
+      "domain_hash": "d91384cc7738c4d6",
+      "num_inputs": 9000000,
+      "pipeline": "truc_1089",
+      "result_hash": "6b5162f2b6820954"
+    },
+    {
+      "basin_entropy": "0.287081635936",
+      "convergence_rate": "0.949838727617",
+      "domain_hash": "b57868e30d00cf66",
+      "num_inputs": 8991,
+      "pipeline": "truc_1089 |> digit_pow4",
+      "result_hash": "cf64b791632661f5"
+    }
+  ],
+  "title": "Verification Hashes for Attractor Statistics"
+}

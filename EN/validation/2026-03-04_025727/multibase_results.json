@@ -1,0 +1,121 @@
+{
+  "kaprekar_3digit": [
+    {
+      "base": 4,
+      "expected": 30,
+      "actual": 30,
+      "formula": "(4//2)*(4\u00b2-1)",
+      "match": true
+    },
+    {
+      "base": 6,
+      "expected": 105,
+      "actual": 105,
+      "formula": "(6//2)*(6\u00b2-1)",
+      "match": true
+    },
+    {
+      "base": 8,
+      "expected": 252,
+      "actual": 252,
+      "formula": "(8//2)*(8\u00b2-1)",
+      "match": true
+    },
+    {
+      "base": 10,
+      "expected": 495,
+      "actual": 495,
+      "formula": "(10//2)*(10\u00b2-1)",
+      "match": true
+    },
+    {
+      "base": 12,
+      "expected": 858,
+      "actual": 858,
+      "formula": "(12//2)*(12\u00b2-1)",
+      "match": true
+    },
+    {
+      "base": 16,
+      "expected": 2040,
+      "actual": 2040,
+      "formula": "(16//2)*(16\u00b2-1)",
+      "match": true
+    }
+  ],
+  "truc_1089_analogues": [
+    {
+      "base": 6,
+      "expected": 245,
+      "actual": 245,
+      "test_input": 180,
+      "formula": "(6-1)*(6+1)\u00b2",
+      "match": true
+    },
+    {
+      "base": 8,
+      "expected": 567,
+      "actual": 567,
+      "test_input": 448,
+      "formula": "(8-1)*(8+1)\u00b2",
+      "match": true
+    },
+    {
+      "base": 10,
+      "expected": 1089,
+      "actual": 1089,
+      "test_input": 900,
+      "formula": "(10-1)*(10+1)\u00b2",
+      "match": true
+    },
+    {
+      "base": 12,
+      "expected": 1859,
+      "actual": 1859,
+      "test_input": 1584,
+      "formula": "(12-1)*(12+1)\u00b2",
+      "match": true
+    }
+  ],
+  "complement_involution": [
+    {
+      "base": 6,
+      "tested": 78,
+      "passed": 78,
+      "rate": 1.0
+    },
+    {
+      "base": 8,
+      "tested": 80,
+      "passed": 80,
+      "rate": 1.0
+    },
+    {
+      "base": 10,
+      "tested": 88,
+      "passed": 88,
+      "rate": 1.0
+    },
+    {
+      "base": 12,
+      "tested": 91,
+      "passed": 91,
+      "rate": 1.0
+    },
+    {
+      "base": 16,
+      "tested": 95,
+      "passed": 95,
+      "rate": 1.0
+    }
+  ],
+  "kaprekar_base6_3d": {
+    "fixed_points": [
+      0,
+      105
+    ],
+    "num_attractors": 2,
+    "convergence_rate": 0.8457142857142858,
+    "result_hash": "9c78b7c3da24dc40"
+  }
+}

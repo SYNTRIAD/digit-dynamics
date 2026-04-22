@@ -1,0 +1,103 @@
+{
+  "comparisons": [
+    {
+      "pipeline": "digit_pow4 |> truc_1089",
+      "domain_hash": "b57868e30d00cf66",
+      "expected_hash": "c011b908c54b29d8",
+      "computed_hash": "c011b908c54b29d8",
+      "match": true
+    },
+    {
+      "pipeline": "kaprekar_step",
+      "domain_hash": "f345c08f2f407d0a",
+      "expected_hash": "57415d2aca454a4a",
+      "computed_hash": "57415d2aca454a4a",
+      "match": true
+    },
+    {
+      "pipeline": "kaprekar_step",
+      "domain_hash": "b57868e30d00cf66",
+      "expected_hash": "e758bdedc3f55d10",
+      "computed_hash": "e758bdedc3f55d10",
+      "match": true
+    },
+    {
+      "pipeline": "kaprekar_step",
+      "domain_hash": "6b9d6cd595b7131b",
+      "expected_hash": "488c49efd3f675f4",
+      "computed_hash": "488c49efd3f675f4",
+      "match": true
+    },
+    {
+      "pipeline": "kaprekar_step",
+      "domain_hash": "2656fd5ea4ea533e",
+      "expected_hash": "6507a0ac820d0880",
+      "computed_hash": "6507a0ac820d0880",
+      "match": true
+    },
+    {
+      "pipeline": "kaprekar_step",
+      "domain_hash": "92f37cf136da0b5d",
+      "expected_hash": "a0b2e1d8c3a2a720",
+      "computed_hash": "a0b2e1d8c3a2a720",
+      "match": true
+    },
+    {
+      "pipeline": "kaprekar_step |> sort_asc |> truc_1089 |> kaprekar_step",
+      "domain_hash": "b57868e30d00cf66",
+      "expected_hash": "6c12d71f34c3564b",
+      "computed_hash": "6c12d71f34c3564b",
+      "match": true
+    },
+    {
+      "pipeline": "kaprekar_step |> swap_ends",
+      "domain_hash": "b57868e30d00cf66",
+      "expected_hash": "ff6d74d4b95bf37c",
+      "computed_hash": "ff6d74d4b95bf37c",
+      "match": true
+    },
+    {
+      "pipeline": "truc_1089",
+      "domain_hash": "47c46532fa5ef2f4",
+      "expected_hash": "83733632e65020ce",
+      "computed_hash": "83733632e65020ce",
+      "match": true
+    },
+    {
+      "pipeline": "truc_1089",
+      "domain_hash": "cc99da5c9f8e832b",
+      "expected_hash": "e37bf75436ba5bac",
+      "computed_hash": "e37bf75436ba5bac",
+      "match": true
+    },
+    {
+      "pipeline": "truc_1089",
+      "domain_hash": "fe3c4801e197ed09",
+      "expected_hash": "2b714d3da22ffe1b",
+      "computed_hash": "2b714d3da22ffe1b",
+      "match": true
+    },
+    {
+      "pipeline": "truc_1089",
+      "domain_hash": "f5a55310c86a8a6e",
+      "expected_hash": "edddd7fbe99723d3",
+      "computed_hash": "edddd7fbe99723d3",
+      "match": true
+    },
+    {
+      "pipeline": "truc_1089",
+      "domain_hash": "d91384cc7738c4d6",
+      "expected_hash": "6b5162f2b6820954",
+      "computed_hash": "6b5162f2b6820954",
+      "match": true
+    },
+    {
+      "pipeline": "truc_1089 |> digit_pow4",
+      "domain_hash": "b57868e30d00cf66",
+      "expected_hash": "cf64b791632661f5",
+      "computed_hash": "cf64b791632661f5",
+      "match": true
+    }
+  ],
+  "all_match": true
+}

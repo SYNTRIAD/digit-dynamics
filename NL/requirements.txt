@@ -1,0 +1,4 @@
+# SYNTRIAD Digit-Pipeline Analysis Framework
+# Python 3.10+ required
+
+numpy==1.26.4
