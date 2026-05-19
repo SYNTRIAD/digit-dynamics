@@ -13,7 +13,20 @@ known integer sequences in the OEIS.
 
 The fixed-point count FP(Rule R, k) equals the trace of the k-th power of
 the 4x4 de Bruijn transfer matrix for rule R. The dominant eigenvalue of
-this matrix determines the asymptotic growth class.
+this matrix determines the asymptotic growth class. Both identities were
+established by exhaustive enumeration (n=1..14) and confirmed via the
+transfer-matrix trace for arbitrary n.
+
+## OEIS status: assessed, not submitted
+
+The connection above is mathematically correct and reproducible. However,
+the planned OEIS *annotation* proposals for A000204 and A001644 were
+**assessed and not pursued**. Both sequences already exist in the OEIS as
+mature, well-referenced entries; a CA-fixed-point annotation was judged to
+add limited value and was not submitted. The artifacts under `oeis/` are
+retained as verified internal documentation of the identity, not as live
+submission proposals. See the AXIOM OEIS tracker for the full disposition
+rationale across all candidate sequences.
 
 ## Structure
 
@@ -21,11 +34,11 @@ this matrix determines the asymptotic growth class.
 cellular-automata/
 ├── verify_submissions.py       <- standalone reproducibility runner
 ├── oeis/
-│   ├── A000204/                <- Lucas numbers submission
-│   └── A001644/                <- Tribonacci numbers submission
+│   ├── A000204/                <- Lucas-number identity (internal record)
+│   └── A001644/                <- Tribonacci identity (internal record)
 └── runs/
     ├── RES-001_axiom_5683fce6/ <- original session (superseded)
-    └── RES-003_axiom_baf19226/ <- corrected rerun (basis of submissions)
+    └── RES-003_axiom_baf19226/ <- corrected rerun (basis of the identity)
 ```
 
 ## Quick Start
