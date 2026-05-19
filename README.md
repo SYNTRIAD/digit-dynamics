@@ -78,9 +78,15 @@ See [ARCHITECTURE.md](ARCHITECTURE.md) for technical details.
 | **[A203648](https://oeis.org/A203648)** | Fox n-colorings of trefoil knot (d=3) | annotation | ✅ Approved Mar 18 2026 |
 | **[A394222](https://oeis.org/A394222)** | Fox n-colorings, 2-bridge knots det=5 | new sequence | ✅ Approved Mar 18 2026 |
 | **[A394223](https://oeis.org/A394223)** | Fox n-colorings, 2-bridge knots det=7 | new sequence | ✅ Approved Mar 18 2026 |
+| **[A395933](https://oeis.org/A395933)** | Longest-run radius-2 fixed points on the cycle C_n | new sequence | ✅ Approved May 10 2026 |
+| **[A395029](https://oeis.org/A395029)** | Majority-rule fixed points on the ladder graph P_2 X P_n | new sequence | 🔄 In review (proposed) |
 
-All four entries were produced by the AXIOM fixed-point census engine,
-which grew directly from the P_k projection discovery documented here.
+Five approved entries plus one in review, all produced by the AXIOM
+fixed-point census engine, which grew directly from the P_k projection
+discovery documented here. The majority-rule entries (A395933, A395029)
+extend the same fixed-point operator across host graphs of increasing
+connectivity; a sixth submission on the C_4 X P_n slab is prepared and
+pending submission.
 See also: [cellular-automata/oeis/](cellular-automata/oeis/) and [knot-theory/oeis/](knot-theory/oeis/) for submission artifacts.
 
 ---
@@ -230,5 +236,4 @@ MIT License — see [LICENSE](LICENSE) for details.
 
 ---
 
-*SYNTRIAD Research — February 2026 · Last updated March 18 2026 (4 OEIS entries approved)*
-
+*SYNTRIAD Research — February 2026 · Last updated May 18 2026 (5 OEIS entries approved, 1 in review)*

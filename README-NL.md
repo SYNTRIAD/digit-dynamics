@@ -78,9 +78,15 @@ Zie [ARCHITECTURE.md](ARCHITECTURE.md) voor technische details.
 | **[A203648](https://oeis.org/A203648)** | Fox n-kleuringen van trefoilknoop (d=3) | annotatie | ✅ Geaccepteerd 18 mrt 2026 |
 | **[A394222](https://oeis.org/A394222)** | Fox n-kleuringen, 2-brug-knopen det=5 | nieuwe reeks | ✅ Geaccepteerd 18 mrt 2026 |
 | **[A394223](https://oeis.org/A394223)** | Fox n-kleuringen, 2-brug-knopen det=7 | nieuwe reeks | ✅ Geaccepteerd 18 mrt 2026 |
+| **[A395933](https://oeis.org/A395933)** | Longest-run radius-2 vaste punten op de cykel C_n | nieuwe reeks | ✅ Geaccepteerd 10 mei 2026 |
+| **[A395029](https://oeis.org/A395029)** | Meerderheidsregel vaste punten op de ladder-graaf P_2 X P_n | nieuwe reeks | 🔄 In review (proposed) |
 
-Alle vier entries zijn voortgekomen uit de AXIOM vaste-punten-census engine,
-die direct is gegroeid uit de P_k projectie-ontdekking die hier gedocumenteerd is.
+Vijf geaccepteerde entries plus één in review, alle voortgekomen uit de
+AXIOM vaste-punten-census engine, die direct is gegroeid uit de P_k
+projectie-ontdekking die hier gedocumenteerd is. De meerderheidsregel-entries
+(A395933, A395029) breiden dezelfde vaste-punt-operator uit over host-grafen
+van toenemende connectiviteit; een zesde inzending op de C_4 X P_n slab is
+voorbereid en wacht op indiening.
 Zie ook: [cellular-automata/oeis/](cellular-automata/oeis/) en [knot-theory/oeis/](knot-theory/oeis/) voor de indieningsartefacten.
 
 ---
@@ -229,4 +235,4 @@ MIT-licentie — zie [LICENSE](LICENSE) voor details.
 
 ---
 
-*SYNTRIAD Research — februari 2026 · Bijgewerkt 18 maart 2026 (4 OEIS-entries geaccepteerd)*
+*SYNTRIAD Research — februari 2026 · Bijgewerkt 18 mei 2026 (5 OEIS-entries geaccepteerd, 1 in review)*
